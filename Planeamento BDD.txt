@@ -1,0 +1,101 @@
+park:
+park_id: int
+latitude: decimal
+longitude: decimal
+paid: tinyint
+underground: tinyint
+floor: int
+valid: tinyint
+date_updated: timestamp
+
+park_times:
+time_id: int
+park_id: int
+weekday: int
+open_time: time
+close_time: time
+always_open: tinyint
+
+park_spots:
+spot_id: int
+id_park: int
+category_id: int
+num_spots: int
+
+park_image:
+image_id: int
+park_id: int
+image_file: varchar
+date_updated: timestamp
+
+park_image_reports:
+image_report_id: int
+image_id: int
+date_updated: timestamp
+
+park_details_reports:
+details_report_id: int
+park_id: int
+ip: int unsigned
+paid_report: tinyint
+underground_report: tinyint
+floor_report: tinyint
+times_report: tinyint
+park_spots_report: tinyint
+date_updated: timestamp
+
+park_details_paid_report:
+details_paid_report_id: int
+report_id: int
+paid: tinyint
+
+park_details_underground_report:
+details_underground_report_id: int
+report_id: int
+underground: tinyint
+
+park_details_floor_report:
+details_floor_report_id: int
+report_id: int
+floor: int
+
+park_details_times_report:
+details_times_report_id: int
+report_id: int
+weekday: int
+open_time: time
+close_time: time
+always_open: tinyint
+
+park_details_spots_report:
+details_spots_report_id: int
+report_id: int
+park_category_id: int
+num_spots: int
+
+comments:
+comment_id: int
+park_id: int
+comment: varchar
+date_updated: timestamp
+
+comment_reports:
+comment_report_id: int
+comment_id: int
+ip: int unsigned
+date_updated: timestamp
+
+category:
+category_id: int
+name: varchar
+date_updated: timestamp
+
+park_category:
+park_id: int
+category_id: int
+
+park_reports:
+park_report_id: int
+park_id: int
+ip: int unsigned
+date_updated: timestamp
