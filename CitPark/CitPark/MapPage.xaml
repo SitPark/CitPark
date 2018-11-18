@@ -2,13 +2,29 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:maps="clr-namespace:Xamarin.Forms.Maps;assembly=Xamarin.Forms.Maps"
+             xmlns:controls="clr-namespace:SuaveControls.Views;assembly=SuaveControls.FloatingActionButton"
              x:Class="CitPark.MapPage">
     <ContentPage.Content>
-        <StackLayout VerticalOptions="StartAndExpand" Padding="30">
-            <maps:Map WidthRequest="320" HeightRequest="200"
-                      x:Name="SpotsMap"
-                      IsShowingUser="True"
-                      MapType="Hybrid" />
-        </StackLayout>
+        <RelativeLayout>
+            <StackLayout VerticalOptions="StartAndExpand">
+                <maps:Map WidthRequest="320" 
+                          HeightRequest="200"
+                          VerticalOptions="FillAndExpand"
+                          HorizontalOptions="FillAndExpand"
+                          x:Name="SpotsMap"
+                          IsShowingUser="True"
+                          MapType="Hybrid" />
+            </StackLayout>
+            <controls:FloatingActionButton x:Name="NavigateFAB"
+                                           HorizontalOptions="CenterAndExpand"
+                                           VerticalOptions="CenterAndExpand"
+                                           Image="ic_navigation.png"
+                                           ButtonColor="#03A9F4"
+                                           RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=1, Constant=-75}"
+                                           RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=1, Constant=-75}" />
+            <StackLayout VerticalOptions="End" x:Name="AdLayout" Margin="32">
+                
+            </StackLayout>
+        </RelativeLayout>
     </ContentPage.Content>
 </ContentPage>
