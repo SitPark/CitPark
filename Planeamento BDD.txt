@@ -8,7 +8,7 @@ floor: int
 valid: tinyint
 date_updated: timestamp
 
-park_times:
+park_time:
 time_id: int
 park_id: int
 weekday: int
@@ -16,9 +16,9 @@ open_time: time
 close_time: time
 always_open: tinyint
 
-park_spots:
+park_spot:
 spot_id: int
-id_park: int
+park_id: int
 category_id: int
 num_spots: int
 
