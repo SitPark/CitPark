@@ -5,26 +5,23 @@
              xmlns:controls="clr-namespace:SuaveControls.Views;assembly=SuaveControls.FloatingActionButton"
              x:Class="CitPark.MapPage">
     <ContentPage.Content>
-        <RelativeLayout>
-            <StackLayout VerticalOptions="StartAndExpand">
-                <maps:Map WidthRequest="320" 
-                          HeightRequest="200"
-                          VerticalOptions="FillAndExpand"
-                          HorizontalOptions="FillAndExpand"
-                          x:Name="SpotsMap"
-                          IsShowingUser="True"
-                          MapType="Hybrid" />
-            </StackLayout>
-            <controls:FloatingActionButton x:Name="NavigateFAB"
-                                           HorizontalOptions="CenterAndExpand"
-                                           VerticalOptions="CenterAndExpand"
-                                           Image="ic_navigation.png"
-                                           ButtonColor="#03A9F4"
-                                           RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=1, Constant=-75}"
-                                           RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=1, Constant=-75}" />
-            <StackLayout VerticalOptions="End" x:Name="AdLayout" Margin="32">
-                
-            </StackLayout>
-        </RelativeLayout>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition x:Name="MapLayout" Height="*" />
+                <RowDefinition x:Name="AdLayout" Height="50" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <maps:Map x:Name="SpotsMap"
+                  IsShowingUser="True"
+                  MapType="Hybrid"
+                  Grid.Row="0"
+                  Grid.Column="0" />
+            <Image Source="ic_placeholder.png"
+                   Aspect="Fill" 
+                   Grid.Row="1"
+                   Grid.Column="0" />
+        </Grid>
     </ContentPage.Content>
 </ContentPage>
