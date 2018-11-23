@@ -7,11 +7,18 @@ namespace CitPark
 {
     public partial class App : Application
     {
+        public NavigationPage NavigationPage { get; private set; }
+
         public App()
         {
-            InitializeComponent();
+            var menuPage = new MenuPage();
 
-            MainPage = new MapPage();
+            NavigationPage = new NavigationPage(new MapPage());
+
+            var rootPage = new RootPage();
+            rootPage.Master = menuPage;
+            rootPage.Detail = NavigationPage;
+            MainPage = rootPage;
         }
 
         protected override void OnStart()

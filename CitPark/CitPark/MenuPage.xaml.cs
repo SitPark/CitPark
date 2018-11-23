@@ -10,11 +10,11 @@ using Xamarin.Forms.Xaml;
 namespace CitPark
 {
 	[XamlCompilation(XamlCompilationOptions.Compile)]
-	public partial class MapPage : ContentPage
+	public partial class MenuPage : ContentPage
 	{
-		public MapPage ()
+		public MenuPage ()
 		{
-            Title = "Map";
+            Title = "Menu";
 			InitializeComponent ();
 		}
 	}

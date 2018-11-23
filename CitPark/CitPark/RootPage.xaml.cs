@@ -10,17 +10,18 @@ using Xamarin.Forms.Xaml;
 namespace CitPark
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class MasterDetailPage : MasterDetailPage
+    public partial class RootPage : MasterDetailPage
     {
-        public MasterDetailPage()
+        public RootPage()
         {
             InitializeComponent();
+            MasterBehavior = MasterBehavior.Popover;
             MasterPage.ListView.ItemSelected += ListView_ItemSelected;
         }
 
         private void ListView_ItemSelected(object sender, SelectedItemChangedEventArgs e)
         {
-            var item = e.SelectedItem as MasterDetailPageMenuItem;
+            var item = e.SelectedItem as RootPageMenuItem;
             if (item == null)
                 return;
 

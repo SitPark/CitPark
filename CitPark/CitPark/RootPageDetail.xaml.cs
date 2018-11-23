@@ -10,9 +10,9 @@ using Xamarin.Forms.Xaml;
 namespace CitPark
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class MasterDetailPageDetail : ContentPage
+    public partial class RootPageDetail : ContentPage
     {
-        public MasterDetailPageDetail()
+        public RootPageDetail()
         {
             InitializeComponent();
         }

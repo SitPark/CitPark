@@ -1,15 +1,15 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <MasterDetailPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="CitPark.MasterDetailPage"
+             x:Class="CitPark.RootPage"
              xmlns:pages="clr-namespace:CitPark">
   <MasterDetailPage.Master>
-    <pages:MasterDetailPageMaster x:Name="MasterPage" />
+    <pages:RootPageMaster x:Name="MasterPage" />
   </MasterDetailPage.Master>
   <MasterDetailPage.Detail>
     <NavigationPage>
       <x:Arguments>
-        <pages:MasterDetailPageDetail />
+        <pages:RootPageDetail />
       </x:Arguments>
     </NavigationPage>
   </MasterDetailPage.Detail>

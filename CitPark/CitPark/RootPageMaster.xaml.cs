@@ -13,31 +13,31 @@ using Xamarin.Forms.Xaml;
 namespace CitPark
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class MasterDetailPageMaster : ContentPage
+    public partial class RootPageMaster : ContentPage
     {
         public ListView ListView;
 
-        public MasterDetailPageMaster()
+        public RootPageMaster()
         {
             InitializeComponent();
 
-            BindingContext = new MasterDetailPageMasterViewModel();
+            BindingContext = new RootPageMasterViewModel();
             ListView = MenuItemsListView;
         }
 
-        class MasterDetailPageMasterViewModel : INotifyPropertyChanged
+        class RootPageMasterViewModel : INotifyPropertyChanged
         {
-            public ObservableCollection<MasterDetailPageMenuItem> MenuItems { get; set; }
+            public ObservableCollection<RootPageMenuItem> MenuItems { get; set; }
             
-            public MasterDetailPageMasterViewModel()
+            public RootPageMasterViewModel()
             {
-                MenuItems = new ObservableCollection<MasterDetailPageMenuItem>(new[]
+                MenuItems = new ObservableCollection<RootPageMenuItem>(new[]
                 {
-                    new MasterDetailPageMenuItem { Id = 0, Title = "Page 1" },
-                    new MasterDetailPageMenuItem { Id = 1, Title = "Page 2" },
-                    new MasterDetailPageMenuItem { Id = 2, Title = "Page 3" },
-                    new MasterDetailPageMenuItem { Id = 3, Title = "Page 4" },
-                    new MasterDetailPageMenuItem { Id = 4, Title = "Page 5" },
+                    new RootPageMenuItem { Id = 0, Title = "Page 1" },
+                    new RootPageMenuItem { Id = 1, Title = "Page 2" },
+                    new RootPageMenuItem { Id = 2, Title = "Page 3" },
+                    new RootPageMenuItem { Id = 3, Title = "Page 4" },
+                    new RootPageMenuItem { Id = 4, Title = "Page 5" },
                 });
             }
             

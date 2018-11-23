@@ -7,11 +7,11 @@ using System.Threading.Tasks;
 namespace CitPark
 {
 
-    public class MasterDetailPageMenuItem
+    public class RootPageMenuItem
     {
-        public MasterDetailPageMenuItem()
+        public RootPageMenuItem()
         {
-            TargetType = typeof(MasterDetailPageDetail);
+            TargetType = typeof(RootPageDetail);
         }
         public int Id { get; set; }
         public string Title { get; set; }

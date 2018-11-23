@@ -1,0 +1,29 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="CitPark.MenuPage">
+    <ContentPage.Content>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <Button Text="Map" Grid.Row="0" Grid.Column="0" />
+            <Button Text="Car timer (premium)" Grid.Row="1" Grid.Column="0" />
+            <Button Text="Settings" Grid.Row="2" Grid.Column="0" />
+            <Button Text="Add parking spot" Grid.Row="3" Grid.Column="0" />
+            <Button Text="Go ad-free!" Grid.Row="4" Grid.Column="0" />
+            <Button Text="Get 1 day of premium!" Grid.Row="5" Grid.Column="0" />
+            <Label Text="Sitpark v0.1" Grid.Row="7" Grid.Column="0" />
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>
