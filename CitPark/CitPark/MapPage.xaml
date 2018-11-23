@@ -5,22 +5,19 @@
              xmlns:controls="clr-namespace:SuaveControls.Views;assembly=SuaveControls.FloatingActionButton"
              x:Class="CitPark.MapPage">
     <ContentPage.Content>
-        <RelativeLayout>
-            <StackLayout
-                RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=1}"
-                RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=1}">
-                <maps:Map x:Name="SpotsMap"
-                          VerticalOptions="FillAndExpand" />
-                <Image HeightRequest="50"
-                       Source="ic_placeholder.png" />
-            </StackLayout>
+        <RelativeLayout x:Name="MapLayout">
+            <maps:Map x:Name="SpotsMap"/>
+            <Image x:Name="AdSpace"
+                   HeightRequest="50"
+                   Source="ic_placeholder.png"
+                   Aspect="Fill"/>
             <controls:FloatingActionButton x:Name="NearbyFAB"
-                                               HorizontalOptions="CenterAndExpand"
-                                               VerticalOptions="CenterAndExpand"
-                                               Image="ic_navigation.png"
-                                               ButtonColor="#03A9F4"
-                                               RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=1, Constant=-75}"
-                                               RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=1, Constant=-75}" />
+                                           HorizontalOptions="CenterAndExpand"
+                                           VerticalOptions="CenterAndExpand"
+                                           Image="ic_navigation.png"
+                                           ButtonColor="#03A9F4"
+                                           RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToView, ElementName=SpotsMap, Property=Width, Factor=1, Constant=-75}"
+                                           RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToView, ElementName=SpotsMap, Property=Height, Factor=1, Constant=-75}" />
         </RelativeLayout>
     </ContentPage.Content>
 </ContentPage>
