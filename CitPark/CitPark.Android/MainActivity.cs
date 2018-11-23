@@ -21,7 +21,8 @@ namespace CitPark.Droid
             global::Xamarin.Forms.Forms.Init(this, savedInstanceState);
 
             // Initialize maps
-            Xamarin.FormsMaps.Init(this, savedInstanceState);
+            Xamarin.FormsGoogleMaps.Init(this, savedInstanceState);
+
             LoadApplication(new App());
         }
     }
