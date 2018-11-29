@@ -5,19 +5,34 @@
              xmlns:controls="clr-namespace:SuaveControls.Views;assembly=SuaveControls.FloatingActionButton"
              x:Class="CitPark.MapPage">
     <ContentPage.Content>
-        <RelativeLayout x:Name="MapLayout">
-            <maps:Map x:Name="SpotsMap"/>
+        <Grid RowSpacing="0" ColumnSpacing="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+            <RelativeLayout x:Name="MapLayout"
+                            Grid.Column="0"
+                            Grid.Row="0" >
+                <maps:Map x:Name="SpotsMap" 
+                          RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=1}"
+                          RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=1}"/>
+                <controls:FloatingActionButton x:Name="NearbyFAB"
+                                               HorizontalOptions="CenterAndExpand"
+                                               VerticalOptions="CenterAndExpand"
+                                               Image="ic_navigation.png"
+                                               ButtonColor="#03A9F4"
+                                               RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=1, Constant=-75}"
+                                               RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=1, Constant=-75}"/>
+            </RelativeLayout>                      
             <Image x:Name="AdSpace"
                    HeightRequest="50"
                    Source="ic_placeholder.png"
-                   Aspect="Fill"/>
-            <controls:FloatingActionButton x:Name="NearbyFAB"
-                                           HorizontalOptions="CenterAndExpand"
-                                           VerticalOptions="CenterAndExpand"
-                                           Image="ic_navigation.png"
-                                           ButtonColor="#03A9F4"
-                                           RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToView, ElementName=SpotsMap, Property=Width, Factor=1, Constant=-75}"
-                                           RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToView, ElementName=SpotsMap, Property=Height, Factor=1, Constant=-75}" />
-        </RelativeLayout>
+                   Aspect="Fill" 
+                   Grid.Column="0"
+                   Grid.Row="1" />
+        </Grid>
     </ContentPage.Content>
 </ContentPage>

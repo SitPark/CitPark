@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CitPark.Classes;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -28,38 +29,6 @@ namespace CitPark
 		{
             Title = "Map";
 			InitializeComponent ();
-
-            // Called whenever the map layout changes size
-            MapLayout.SizeChanged += (sender, e) =>
-            {
-                // Position map according to ad
-                // TODO: check if ad was bought
-                if (AdBought)
-                {
-                    AdOffset = 0;
-                }
-
-                MapLayout.Children.Add(SpotsMap, Constraint.RelativeToParent((MapLayout) =>
-                {
-                    return 0;
-                }),
-                Constraint.RelativeToParent((MapLayout) =>
-                {
-                    return 0;
-                }),
-                Constraint.Constant(MapLayout.Width), Constraint.Constant(MapLayout.Height - AdOffset));
-
-                MapLayout.Children.Add(AdSpace, Constraint.RelativeToParent((MapLayout) =>
-                {
-                    return (0);
-
-                }),
-                Constraint.RelativeToParent((MapLayout) =>
-                {
-                    return (MapLayout.Height - AdOffset);
-                }),
-                Constraint.Constant(MapLayout.Width), Constraint.Constant(AdOffset));
-            };
 
             // Show on the map current user location
             SpotsMap.MyLocationEnabled = true;
