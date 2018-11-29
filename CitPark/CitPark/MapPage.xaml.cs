@@ -67,9 +67,27 @@ namespace CitPark
             // Show button to go to current position
             SpotsMap.UiSettings.MyLocationButtonEnabled = true;
 
-            SpotsMap.Pins.Add(_pinIspgaya);
-            SpotsMap.SelectedPin = _pinIspgaya;
-            SpotsMap.MoveToRegion(MapSpan.FromCenterAndRadius(_pinIspgaya.Position, Distance.FromMeters(5000)), true);
+            RefreshMap();
         }
-	}
+
+        public void RefreshMap()
+        {
+            // TODO: actually get spots from server
+            List<ParkTime> parkTimes = new List<ParkTime>();
+            ParkTime parkTime = new ParkTime(WeekDay.Monday, true, new TimeSpan(), new TimeSpan());
+            parkTimes.Add(parkTime);
+            ParkTimes parkTimesClass = new ParkTimes(parkTimes);
+            ParkingSpot parkingSpot = new ParkingSpot(new Position(41.118363d, -8.6235849d), false, false, 0, parkTimesClass);
+
+            Pin pin = new Pin()
+            {
+                Type = PinType.Place,
+                Label = "GaiaShopping",
+                Address = "Av. dos Descobrimentos 549, 4404-503 Vila Nova de Gaia",
+                Position = new Position(parkingSpot.Coordinate.Latitude, parkingSpot.Coordinate.Longitude)
+            };
+
+            //SpotsMap.Pins.Add(pin);
+        }
+    }
 }
