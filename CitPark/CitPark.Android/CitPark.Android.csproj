@@ -49,6 +49,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <PackageReference Include="Plugin.Permissions">
+      <Version>3.0.0.12</Version>
+    </PackageReference>
     <PackageReference Include="SuaveControls.FloatingActionButton">
       <Version>2018.1.5</Version>
     </PackageReference>
