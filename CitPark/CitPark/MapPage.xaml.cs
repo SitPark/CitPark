@@ -46,14 +46,14 @@ namespace CitPark
             ParkTime parkTime = new ParkTime(WeekDay.Monday, true, new TimeSpan(), new TimeSpan());
             parkTimes.Add(parkTime);
             ParkTimes parkTimesClass = new ParkTimes(parkTimes);
-            ParkingSpot parkingSpot = new ParkingSpot(new Position(41.118363d, -8.6235849d), false, false, 0, parkTimesClass);
+            ParkingSpotPreview parkingSpot = new ParkingSpotPreview(new Position(41.118363d, -8.6235849d), "");
 
             Pin pin = new Pin()
             {
                 Type = PinType.Place,
                 Label = "GaiaShopping",
                 Address = "Av. dos Descobrimentos 549, 4404-503 Vila Nova de Gaia",
-                Position = new Position(parkingSpot.Coordinate.Latitude, parkingSpot.Coordinate.Longitude)
+                Position = new Position(parkingSpot.Position.Latitude, parkingSpot.Position.Longitude)
             };
 
             //SpotsMap.Pins.Add(pin);
