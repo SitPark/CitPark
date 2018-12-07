@@ -7,7 +7,7 @@ namespace CitPark
 {
     public partial class App : Application
     {
-        public NavigationPage NavigationPage { get; private set; }
+        public static NavigationPage NavigationPage { get; private set; }
 
         public App()
         {

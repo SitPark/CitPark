@@ -17,5 +17,15 @@ namespace CitPark
             Title = "Menu";
 			InitializeComponent ();
 		}
-	}
+
+        private void MapButton_Clicked(object sender, EventArgs e)
+        {
+            App.NavigationPage.Navigation.PushAsync(new MapPage());
+        }
+
+        private void SettingsButton_Clicked(object sender, EventArgs e)
+        {
+            App.NavigationPage.Navigation.PushAsync(new SettingsPage());
+        }
+    }
 }

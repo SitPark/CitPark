@@ -1,0 +1,104 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:Controls="clr-namespace:CitPark.Controls"
+             x:Class="CitPark.SettingsPage">
+    <ContentPage.Content>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+            <ScrollView Grid.Row="0">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+                    <Grid Grid.Row="0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <Label Text="Dark mode" Grid.Column="0" VerticalOptions="Center" />
+                        <Switch x:Name="DarkModeSwitch" Grid.Column="1" HorizontalOptions="End" Toggled="DarkModeSwitch_Toggled" />
+                    </Grid>
+                    <Grid Grid.Row="1">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <Label Text="Send timer notification" Grid.Column="0" VerticalOptions="Center" />
+                        <Switch x:Name="TimerNotificationSwitch" Grid.Column="1" HorizontalOptions="End" Toggled="TimerNotificationSwitch_Toggled" />
+                    </Grid>
+                    <Grid Grid.Row="2">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <Label Text="Distance unit" Grid.Column="0" VerticalOptions="Center" />
+                        <Picker x:Name="DistanceUnitPicker" Grid.Column="1" >
+                            <Picker.Items>
+                                <x:String>Kilometers</x:String>
+                                <x:String>Miles</x:String>
+                            </Picker.Items>
+                        </Picker>
+                    </Grid>
+                    <Grid Grid.Row="3">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="Auto" />
+                        </Grid.ColumnDefinitions>
+                        <Label Text="Default timer" Grid.Column="0" VerticalOptions="Center" />
+                        <Controls:NumericUpDown x:Name="TimerUpDown" Maximum="720" Minimum="10" Increment="5" Value="10" Grid.Column="1" />
+                        <Label Text="minutes" Grid.Column="2" VerticalOptions="Center" />
+                    </Grid>
+                    <Grid Grid.Row="4">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="Auto" />
+                        </Grid.ColumnDefinitions>
+                        <Label Text="Time to warn" Grid.Column="0" VerticalOptions="Center" />
+                        <Controls:NumericUpDown x:Name="TimeWarningUpDown" Maximum="60" Minimum="5" Increment="5" Value="5" Grid.Column="1" />
+                        <Label Text="minutes" Grid.Column="2" VerticalOptions="Center" />
+                    </Grid>
+                    <Grid Grid.Row="5">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="Auto" />
+                        </Grid.ColumnDefinitions>
+                        <Label Text="Search radius" Grid.Column="0" VerticalOptions="Center" />
+                        <Controls:NumericUpDown  x:Name="RadiusUpDown" Maximum="60" Minimum="1" Increment="1" Grid.Column="1" />
+                        <Label Text="Km" Grid.Column="2" VerticalOptions="Center" />
+                    </Grid>
+                    <Grid Grid.Row="6">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <Label Text="Park types to search for" Grid.Column="0" VerticalOptions="Center" />
+                        <Button x:Name="ParkTypesButton" Text="Select Park Types" Grid.Column="1" />
+                    </Grid>
+                </Grid>
+            </ScrollView>
+            
+            <Grid Grid.Row="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <Button x:Name="CancelButton" Text="Cancel" Grid.Column="0" VerticalOptions="CenterAndExpand" Clicked="CancelButton_Clicked" />
+                <Button x:Name="SaveButton" Text="Save" Grid.Column="1" VerticalOptions="CenterAndExpand" Clicked="SaveButton_Clicked" />
+            </Grid>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>
