@@ -76,7 +76,7 @@
                         <ColumnDefinition Width="*" />
                     </Grid.ColumnDefinitions>
                     <Label Text="Park types to search for" Grid.Column="0" VerticalOptions="Center" />
-                    <Button x:Name="ParkTypesButton" Text="Select Park Types" Grid.Column="1" />
+                    <Button x:Name="ParkTypesButton" Text="Select Park Types" Grid.Column="1" Clicked="ParkTypesButton_Clicked" />
                 </Grid>
             </Grid>
         </ScrollView>

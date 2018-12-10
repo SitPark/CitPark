@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CitPark.Pages;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -99,6 +100,12 @@ namespace CitPark
         {
             Preferences.Set("search_radius", RadiusUpDown.Value);
             Settings.SearchRadius = (int)RadiusUpDown.Value;
+        }
+
+        async void ParkTypesButton_Clicked(object sender, EventArgs e)
+        {
+            var parkTypesPage = new ParkTypesModal();
+            await Navigation.PushModalAsync(parkTypesPage);
         }
     }
 }

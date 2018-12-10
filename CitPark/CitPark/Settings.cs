@@ -9,6 +9,16 @@ namespace CitPark
     {
         public readonly Settings _instance = new Settings();
 
+        [Flags]
+        public enum ParkTypesEnum
+        {
+            None = 0,
+            Handicap = 1,
+            Family = 2,
+            Eletric = 4,
+            Bike = 8
+        }
+
         public Settings() { }
 
         public static bool TimerNotification { get; set; }

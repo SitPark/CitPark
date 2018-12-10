@@ -19,7 +19,7 @@ namespace CitPark
             Settings.SelectedDistanceUnit = (DistanceUnits)Preferences.Get("distance_unit", (int)DistanceUnits.Kilometers);
             Settings.WarnTime = Preferences.Get("warn_time", 10);
             Settings.SearchRadius = Preferences.Get("search_radius", 1);
-            Settings.ParkTypes = Preferences.Get("park_types", 0x1111);
+            Settings.ParkTypes = Preferences.Get("park_types", 0b1111);
 
             var menuPage = new MenuPage();
 
