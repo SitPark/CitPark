@@ -86,6 +86,8 @@ namespace CitPark.Controls
             {
                 Value -= Increment;
             }
+
+            DownButtonClicked?.Invoke(this, EventArgs.Empty);
         }
 
         private void UpButton_Clicked(object sender, EventArgs e)
@@ -98,6 +100,8 @@ namespace CitPark.Controls
             {
                 Value += Increment;
             }
+
+            UpButtonClicked?.Invoke(this, EventArgs.Empty);
         }
 
         private void Entry_Unfocused(object sender, FocusEventArgs e)
@@ -110,6 +114,14 @@ namespace CitPark.Controls
             {
                 Value = Minimum;
             }
+
+            EntryUnfocused?.Invoke(this, EventArgs.Empty);
         }
+
+        public event EventHandler UpButtonClicked;
+
+        public event EventHandler DownButtonClicked;
+
+        public event EventHandler EntryUnfocused;
     }
 }
