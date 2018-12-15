@@ -18,7 +18,6 @@ namespace CitPark
 
 		public SettingsPage ()
 		{
-            Title = "Settings";
 			InitializeComponent ();
 
             // Assign the distance units list to the picker

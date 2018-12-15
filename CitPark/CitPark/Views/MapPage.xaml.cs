@@ -1,6 +1,7 @@
 ﻿using CitPark.Classes;
 using Plugin.Permissions;
 using Plugin.Permissions.Abstractions;
+using SearchBarExemplo.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -29,8 +30,9 @@ namespace CitPark
 
 		public MapPage ()
 		{
-            Title = "Map";
 			InitializeComponent ();
+
+            BindingContext = new MainViewModel();
 
             RefreshMap();
         }

@@ -1,7 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="CitPark.MenuPage">
+             x:Class="CitPark.MenuPage"
+             Title="Menu">
     <ContentPage.Content>
         <Grid>
             <Grid.RowDefinitions>
@@ -18,7 +19,7 @@
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
             <Button x:Name="MapButton" Text="Map" Grid.Row="0" Grid.Column="0"  Clicked="MapButton_Clicked"/>
-            <Button Text="Car timer (premium)" Grid.Row="1" Grid.Column="0" />
+            <Button Text="Car timer (premium)" Grid.Row="1" Grid.Column="0" Clicked="Button_Clicked" />
             <Button x:Name="SettingsButton" Text="Settings" Grid.Row="2" Grid.Column="0" Clicked="SettingsButton_Clicked" />
             <Button Text="Add parking spot" Grid.Row="3" Grid.Column="0" />
             <Button Text="Go ad-free!" Grid.Row="4" Grid.Column="0" />

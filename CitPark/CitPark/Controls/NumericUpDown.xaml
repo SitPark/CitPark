@@ -25,6 +25,7 @@
         <Entry Grid.Column="1"
                x:Name="ValueEntry"
                Text="{Binding Source={x:Reference this}, Path=Value, Converter={StaticResource doubleConverter}}"
+               Keyboard="Numeric"
                HorizontalOptions="FillAndExpand"
                Unfocused="Entry_Unfocused" />
         <Button Grid.Column="2" 

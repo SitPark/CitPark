@@ -1,0 +1,56 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:maps="clr-namespace:Xamarin.Forms.GoogleMaps;assembly=Xamarin.Forms.GoogleMaps"
+             xmlns:controls="clr-namespace:SuaveControls.Views;assembly=SuaveControls.FloatingActionButton"
+             x:Class="CitPark.MapPage"
+             Title="Map">
+    <NavigationPage.TitleView>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+            <SearchBar x:Name="SearchBar" Placeholder="Search" SearchCommand="{Binding SearchCommand}" Text="{Binding value, Mode=TwoWay}" Grid.Column="0" />
+            <Button x:Name="SearchButton" Text="S" Grid.Column="1" />
+        </Grid>
+    </NavigationPage.TitleView>
+    <ContentPage.Content>
+        <Grid RowSpacing="0" ColumnSpacing="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
+                <maps:Map x:Name="SpotsMap"
+                          Grid.Row="0"
+                          Grid.RowSpan="2"
+                          Grid.Column="0"
+                          Grid.ColumnSpan="2" />
+                <controls:FloatingActionButton x:Name="NearbyFAB"
+                                               Image="ic_navigation.png"
+                                               ButtonColor="#6200EE"
+                                               Grid.Row="1"
+                                               Grid.Column="1" />
+
+            </Grid>
+            <Image x:Name="AdSpace"
+                   HeightRequest="50"
+                   Source="ic_placeholder.png"
+                   Aspect="Fill" 
+                   Grid.Column="0"
+                   Grid.Row="1" />
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

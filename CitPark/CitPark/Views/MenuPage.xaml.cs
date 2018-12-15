@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CitPark.Views;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -14,7 +15,6 @@ namespace CitPark
 	{
 		public MenuPage ()
 		{
-            Title = "Menu";
 			InitializeComponent ();
 		}
 
@@ -26,6 +26,11 @@ namespace CitPark
         private void SettingsButton_Clicked(object sender, EventArgs e)
         {
             App.NavigationPage.Navigation.PushAsync(new SettingsPage());
+        }
+
+        private void Button_Clicked(object sender, EventArgs e)
+        {
+            App.NavigationPage.Navigation.PushAsync(new TimerPage());
         }
     }
 }
