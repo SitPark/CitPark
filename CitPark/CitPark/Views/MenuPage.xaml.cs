@@ -32,5 +32,10 @@ namespace CitPark
         {
             App.NavigationPage.Navigation.PushAsync(new TimerPage());
         }
+
+        private void AddParkingButton_Clicked(object sender, EventArgs e)
+        {
+            App.NavigationPage.Navigation.PushAsync(new AddParkingSpotPage());
+        }
     }
 }

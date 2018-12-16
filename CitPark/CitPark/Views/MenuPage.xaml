@@ -21,7 +21,7 @@
             <Button x:Name="MapButton" Text="Map" Grid.Row="0" Grid.Column="0"  Clicked="MapButton_Clicked"/>
             <Button Text="Car timer (premium)" Grid.Row="1" Grid.Column="0" Clicked="Button_Clicked" />
             <Button x:Name="SettingsButton" Text="Settings" Grid.Row="2" Grid.Column="0" Clicked="SettingsButton_Clicked" />
-            <Button Text="Add parking spot" Grid.Row="3" Grid.Column="0" />
+            <Button x:Name="AddParkingButton" Text="Add parking spot" Grid.Row="3" Grid.Column="0" Clicked="AddParkingButton_Clicked" />
             <Button Text="Go ad-free!" Grid.Row="4" Grid.Column="0" />
             <Button Text="Get 1 day of premium!" Grid.Row="5" Grid.Column="0" />
             <Label Text="Sitpark v0.1" Grid.Row="7" Grid.Column="0" />
