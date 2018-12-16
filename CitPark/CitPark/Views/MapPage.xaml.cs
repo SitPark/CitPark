@@ -1,7 +1,7 @@
 ﻿using CitPark.Classes;
+using CitPark.ViewModels;
 using Plugin.Permissions;
 using Plugin.Permissions.Abstractions;
-using SearchBarExemplo.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;

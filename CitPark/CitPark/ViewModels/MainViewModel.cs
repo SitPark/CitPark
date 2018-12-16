@@ -6,7 +6,7 @@ using System.Text;
 using System.Windows.Input;
 using Xamarin.Forms;
 
-namespace SearchBarExemplo.ViewModels
+namespace CitPark.ViewModels
 {
     public class MainViewModel : INotifyPropertyChanged
     {
