@@ -43,19 +43,19 @@ namespace CitPark
 
         private void TimerUpDown_UpButtonClicked(object sender, EventArgs e)
         {
-            Preferences.Set("default_timer", TimerUpDown.Value);
+            Preferences.Set("default_timer", (int)TimerUpDown.Value);
             Settings.DefaultTimer = (int)TimerUpDown.Value;
         }
 
         private void TimerUpDown_DownButtonClicked(object sender, EventArgs e)
         {
-            Preferences.Set("default_timer", TimerUpDown.Value);
+            Preferences.Set("default_timer", (int)TimerUpDown.Value);
             Settings.DefaultTimer = (int)TimerUpDown.Value;
         }
 
         private void TimerUpDown_EntryUnfocused(object sender, EventArgs e)
         {
-            Preferences.Set("default_timer", TimerUpDown.Value);
+            Preferences.Set("default_timer", (int)TimerUpDown.Value);
             Settings.DefaultTimer = (int)TimerUpDown.Value;
         }
 
@@ -67,37 +67,37 @@ namespace CitPark
 
         private void TimeWarningUpDown_UpButtonClicked(object sender, EventArgs e)
         {
-            Preferences.Set("warn_time", TimeWarningUpDown.Value);
+            Preferences.Set("warn_time", (int)TimeWarningUpDown.Value);
             Settings.WarnTime = new TimeSpan(0, (int)TimeWarningUpDown.Value, 0);
         }
 
         private void TimeWarningUpDown_DownButtonClicked(object sender, EventArgs e)
         {
-            Preferences.Set("warn_time", TimeWarningUpDown.Value);
+            Preferences.Set("warn_time", (int)TimeWarningUpDown.Value);
             Settings.WarnTime = new TimeSpan(0, (int)TimeWarningUpDown.Value, 0);
         }
 
         private void TimeWarningUpDown_EntryUnfocused(object sender, EventArgs e)
         {
-            Preferences.Set("warn_time", TimeWarningUpDown.Value);
+            Preferences.Set("warn_time", (int)TimeWarningUpDown.Value);
             Settings.WarnTime = new TimeSpan(0, (int)TimeWarningUpDown.Value, 0);
         }
 
         private void RadiusUpDown_UpButtonClicked(object sender, EventArgs e)
         {
-            Preferences.Set("search_radius", RadiusUpDown.Value);
+            Preferences.Set("search_radius", (int)RadiusUpDown.Value);
             Settings.SearchRadius = (int)RadiusUpDown.Value;
         }
 
         private void RadiusUpDown_DownButtonClicked(object sender, EventArgs e)
         {
-            Preferences.Set("search_radius", RadiusUpDown.Value);
+            Preferences.Set("search_radius", (int)RadiusUpDown.Value);
             Settings.SearchRadius = (int)RadiusUpDown.Value;
         }
 
         private void RadiusUpDown_EntryUnfocused(object sender, EventArgs e)
         {
-            Preferences.Set("search_radius", RadiusUpDown.Value);
+            Preferences.Set("search_radius", (int)RadiusUpDown.Value);
             Settings.SearchRadius = (int)RadiusUpDown.Value;
         }
 

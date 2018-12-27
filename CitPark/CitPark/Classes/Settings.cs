@@ -5,10 +5,8 @@ using Xamarin.Essentials;
 
 namespace CitPark
 {
-    public class Settings
+    public static class Settings
     {
-        public readonly Settings _instance = new Settings();
-
         [Flags]
         public enum ParkTypesEnum
         {
@@ -18,8 +16,6 @@ namespace CitPark
             Eletric = 4,
             Bike = 8
         }
-
-        public Settings() { }
 
         public static bool TimerNotification { get; set; }
         public static bool DarkMode { get; set; }
