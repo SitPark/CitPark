@@ -12,15 +12,6 @@ namespace CitPark
 
         public App()
         {
-            // Get settings from preferences
-            Settings.DefaultTimer = Preferences.Get("default_timer", 30);
-            Settings.TimerNotification = Preferences.Get("timer_notification", true);
-            Settings.DarkMode = Preferences.Get("dark_mode", false);
-            Settings.SelectedDistanceUnit = (DistanceUnits)Preferences.Get("distance_unit", (int)DistanceUnits.Kilometers);
-            Settings.WarnTime = new TimeSpan(0, Preferences.Get("warn_time", 10), 0);
-            Settings.SearchRadius = Preferences.Get("search_radius", 1);
-            Settings.ParkTypes = Preferences.Get("park_types", 0b1111);
-
             var menuPage = new MenuPage();
 
             NavigationPage = new NavigationPage(new MapPage());

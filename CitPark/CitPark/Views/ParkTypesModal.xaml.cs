@@ -7,7 +7,7 @@ using Xamarin.Essentials;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
-namespace CitPark.Pages
+namespace CitPark
 {
 	[XamlCompilation(XamlCompilationOptions.Compile)]
 	public partial class ParkTypesModal : ContentPage
@@ -70,26 +70,6 @@ namespace CitPark.Pages
             Settings.ParkTypes = (int)parkTypes;
 
             await Navigation.PopModalAsync();
-        }
-
-        private void HandicapSwitch_Toggled(object sender, ToggledEventArgs e)
-        {
-
-        }
-
-        private void FamilySwitch_Toggled(object sender, ToggledEventArgs e)
-        {
-
-        }
-
-        private void EletricSwitch_Toggled(object sender, ToggledEventArgs e)
-        {
-
-        }
-
-        private void BikeSwitch_Toggled(object sender, ToggledEventArgs e)
-        {
-
         }
     }
 }

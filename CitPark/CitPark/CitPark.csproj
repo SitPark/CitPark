@@ -10,6 +10,8 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Microsoft.CSharp" Version="4.5.0" />
+    <PackageReference Include="Newtonsoft.Json" Version="12.0.1" />
     <PackageReference Include="Plugin.Permissions" Version="3.0.0.12" />
     <PackageReference Include="SuaveControls.FloatingActionButton" Version="2018.1.5" />
     <PackageReference Include="Xam.Plugins.Notifier" Version="3.0.1" />
@@ -24,6 +26,9 @@
     </Compile>
     <Compile Update="RootPageMenuItem.cs">
       <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Views\ParksListModal.xaml.cs">
+      <DependentUpon>ParksListModal.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
 
@@ -43,7 +48,7 @@
     <EmbeddedResource Update="Views\MenuPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Views\ParkTypesModal.xaml">
+    <EmbeddedResource Update="Views\ParksListModal.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Views\RootPage.xaml">

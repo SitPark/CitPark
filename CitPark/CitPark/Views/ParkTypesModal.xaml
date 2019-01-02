@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="CitPark.Pages.ParkTypesModal">
+             x:Class="CitPark.ParkTypesModal">
     <ContentPage.Content>
         <StackLayout VerticalOptions="Center" Padding="10,10,10,10">
             <Label Text="Select park type" HorizontalOptions="Center" FontSize="Large" />
@@ -20,10 +20,10 @@
                 <Label Text="Family" Grid.Column="0" Grid.Row="1" />
                 <Label Text="Eletric" Grid.Column="0" Grid.Row="2" />
                 <Label Text="Bike" Grid.Column="0" Grid.Row="3" />
-                <Switch x:Name="HandicapSwitch" Toggled="HandicapSwitch_Toggled" Grid.Column="1" Grid.Row="0" />
-                <Switch x:Name="FamilySwitch" Toggled="FamilySwitch_Toggled" Grid.Column="1" Grid.Row="1" />
-                <Switch x:Name="EletricSwitch" Toggled="EletricSwitch_Toggled" Grid.Column="1" Grid.Row="2" />
-                <Switch x:Name="BikeSwitch" Toggled="BikeSwitch_Toggled" Grid.Column="1" Grid.Row="3" />
+                <Switch x:Name="HandicapSwitch" Grid.Column="1" Grid.Row="0" />
+                <Switch x:Name="FamilySwitch" Grid.Column="1" Grid.Row="1" />
+                <Switch x:Name="EletricSwitch" Grid.Column="1" Grid.Row="2" />
+                <Switch x:Name="BikeSwitch" Grid.Column="1" Grid.Row="3" />
             </Grid>
             <Grid>
                 <Grid.ColumnDefinitions>

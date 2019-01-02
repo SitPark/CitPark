@@ -1,14 +1,27 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
+using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Text;
 using Xamarin.Forms.GoogleMaps;
 
 namespace CitPark.Classes
 {
-    class ParkingSpotPreview
+    public class ParkingSpotPreview : INotifyPropertyChanged
     {
-        public Position Position { get; set; }
+        [JsonProperty("park_id")]
+        public int Id { get; set; }
+        [JsonProperty("coordinates")]
+        public double[] Coordinates { get; set; }
+        [JsonProperty("name")]
         public string Name { get; set; }
+        [JsonProperty("paid")]
+        public bool Paid { get; set; }
+        [JsonProperty("underground")]
+        public bool Underground { get; set; }
+        [JsonProperty("floor")]
+        public int Floor { get; set; }
         public ParkingSpotDetails Details { get; set; }
 
         /// <summary>
@@ -16,30 +29,53 @@ namespace CitPark.Classes
         /// Initializes a ParkingSpotPreview at 0,0, with an empty name and
         /// null ParkingSpotDetails.
         /// </summary>
-        public ParkingSpotPreview() : this(new Position(), "", null) { }
+        public ParkingSpotPreview() : this(0, new double[] { 0d, 0d }, "", false, false, 0, null) { }
 
         /// <summary>
         /// Preview constructor for ParkingSpotPreview.
         /// Initializes a ParkingSpotPreview with the given Position and
         /// name, and null ParkingSpotDetails.
         /// </summary>
+        /// <param name="id">The ParkingSpotPreview id.</param>
         /// <param name="position">The ParkingSpotPreview position.</param>
         /// <param name="name">The ParkingSpotPreview name.</param>
-        public ParkingSpotPreview(Position position, string name) : this(position, name, null) { }
+        /// <param name="paid">If the ParkingSpotPreview is paid.</param>
+        /// <param name="underground">If the ParkingSpotPreview is located underground.</param>
+        /// <param name="floor">The ParkingSpotPreview's floor.</param>
+        public ParkingSpotPreview(int id, double[] coordinates, string name, bool paid, bool underground, int floor) : this(id, coordinates, name, paid, underground, floor, null) { }
 
         /// <summary>
         /// Full constructor for ParkingSpotPreview.
         /// Initialize a ParkingSpotPreview with the given Position and
         /// name, and ParkingSpotDetails.
         /// </summary>
-        /// <param name="position">The ParkingSpotPreview position.</param>
+        /// <param name="id">The ParkingSpotPreview id.</param>
+        /// <param name="coordinates">The ParkingSpotPreview position.</param>
         /// <param name="name">The ParkingSpotPreview name.</param>
+        /// <param name="paid">If the ParkingSpotPreview is paid.</param>
+        /// <param name="underground">If the ParkingSpotPreview is located underground.</param>
+        /// <param name="floor">The ParkingSpotPreview's floor.</param>
         /// <param name="details">The ParkingSpotPreview details.</param>
-        public ParkingSpotPreview(Position position, string name, ParkingSpotDetails details)
+        public ParkingSpotPreview(int id, double[] coordinates, string name, bool paid, bool underground, int floor, ParkingSpotDetails details)
         {
-            this.Position = position;
-            this.Name = name;
-            this.Details = details;
+            Id = id;
+            Coordinates = coordinates;
+            Name = name;
+            Paid = paid;
+            Underground = underground;
+            Floor = floor;
+            Details = details;
+        }
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        public void OnPropertyChanged(string propertyName)
+        {
+            var handler = PropertyChanged;
+            if(handler != null)
+            {
+                handler(this, new PropertyChangedEventArgs(propertyName));
+            }
         }
     }
 }

@@ -1,5 +1,4 @@
-﻿using CitPark.Pages;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -31,73 +30,61 @@ namespace CitPark
 
         private void TimerNotificationSwitch_Toggled(object sender, ToggledEventArgs e)
         {
-            Preferences.Set("timer_notification", e.Value);
             Settings.TimerNotification = e.Value;
         }
 
         private void DarkModeSwitch_Toggled(object sender, ToggledEventArgs e)
         {
-            Preferences.Set("dark_mode", e.Value);
             Settings.DarkMode = e.Value;
         }
 
         private void TimerUpDown_UpButtonClicked(object sender, EventArgs e)
         {
-            Preferences.Set("default_timer", (int)TimerUpDown.Value);
             Settings.DefaultTimer = (int)TimerUpDown.Value;
         }
 
         private void TimerUpDown_DownButtonClicked(object sender, EventArgs e)
         {
-            Preferences.Set("default_timer", (int)TimerUpDown.Value);
             Settings.DefaultTimer = (int)TimerUpDown.Value;
         }
 
         private void TimerUpDown_EntryUnfocused(object sender, EventArgs e)
         {
-            Preferences.Set("default_timer", (int)TimerUpDown.Value);
             Settings.DefaultTimer = (int)TimerUpDown.Value;
         }
 
         private void DistanceUnitPicker_SelectedIndexChanged(object sender, EventArgs e)
         {
-            Preferences.Set("distance_unit", (int)DistanceUnitPicker.SelectedItem);
             Settings.SelectedDistanceUnit = (DistanceUnits)DistanceUnitPicker.SelectedItem;
         }
 
         private void TimeWarningUpDown_UpButtonClicked(object sender, EventArgs e)
         {
-            Preferences.Set("warn_time", (int)TimeWarningUpDown.Value);
             Settings.WarnTime = new TimeSpan(0, (int)TimeWarningUpDown.Value, 0);
         }
 
         private void TimeWarningUpDown_DownButtonClicked(object sender, EventArgs e)
         {
-            Preferences.Set("warn_time", (int)TimeWarningUpDown.Value);
             Settings.WarnTime = new TimeSpan(0, (int)TimeWarningUpDown.Value, 0);
         }
 
         private void TimeWarningUpDown_EntryUnfocused(object sender, EventArgs e)
         {
-            Preferences.Set("warn_time", (int)TimeWarningUpDown.Value);
             Settings.WarnTime = new TimeSpan(0, (int)TimeWarningUpDown.Value, 0);
         }
 
         private void RadiusUpDown_UpButtonClicked(object sender, EventArgs e)
         {
-            Preferences.Set("search_radius", (int)RadiusUpDown.Value);
             Settings.SearchRadius = (int)RadiusUpDown.Value;
         }
 
         private void RadiusUpDown_DownButtonClicked(object sender, EventArgs e)
         {
-            Preferences.Set("search_radius", (int)RadiusUpDown.Value);
             Settings.SearchRadius = (int)RadiusUpDown.Value;
         }
 
         private void RadiusUpDown_EntryUnfocused(object sender, EventArgs e)
         {
-            Preferences.Set("search_radius", (int)RadiusUpDown.Value);
             Settings.SearchRadius = (int)RadiusUpDown.Value;
         }
 

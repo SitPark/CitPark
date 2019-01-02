@@ -1,27 +1,33 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Text;
+using Xamarin.Forms;
 using Xamarin.Forms.GoogleMaps;
 
 namespace CitPark.Classes
 {
-    public class ParkingSpotDetails
+    public class ParkingSpotDetails : INotifyPropertyChanged
     {
-        public bool Paid { get; set; }
-        public bool Underground { get; set; }
-        public int Floor { get; set; }
+        public int Id { get; set; }
         public ParkTimes ParkTimes { get; set; }
-        // TODO: add image variable
+        public ImageSource Image { get; set; }
         // TODO: add comments variable
 
-        public ParkingSpotDetails() : this(false, false, 0, new ParkTimes() /*, image variable, comments variable */){}
+        public ParkingSpotDetails() : this(0, new ParkTimes(), "" /*, comments variable */){}
 
-        public ParkingSpotDetails(bool paid, bool underground, int floor, ParkTimes parktimes /*, image variable, comments variable */)
+        public ParkingSpotDetails(int id, ParkTimes parktimes, ImageSource image /*, comments variable */)
         {
-            this.Paid = paid;
-            this.Underground = underground;
-            this.Floor = floor;
-            this.ParkTimes = parktimes;
+            Id = Id;
+            ParkTimes = parktimes;
+            Image = image;
+        }
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        public void OnPropertyChanged(string propertyName)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
     }
 }

@@ -12,7 +12,7 @@
                 <ColumnDefinition Width="Auto" />
             </Grid.ColumnDefinitions>
             <SearchBar x:Name="SearchBar" Placeholder="Search" SearchCommand="{Binding SearchCommand}" Text="{Binding value, Mode=TwoWay}" Grid.Column="0" />
-            <Button x:Name="SearchButton" Text="S" Grid.Column="1" />
+            <Button x:Name="SearchButton" Text="S" Grid.Column="1" Clicked="SearchButton_Clicked" />
         </Grid>
     </NavigationPage.TitleView>
     <ContentPage.Content>
