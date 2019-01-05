@@ -54,7 +54,14 @@ namespace CitPark
         {
             get
             {
-                return Preferences.Get("default_timer", 30);
+                try
+                {
+                    return Preferences.Get("default_timer", 30);
+                }
+                catch(Exception ex)
+                {
+                    return 30;
+                }
             }
             set
             {
@@ -99,5 +106,6 @@ namespace CitPark
 
         public static bool TimerActivated { get; set; }
         public static DateTime TimerLimit { get; set; }
+        public static bool GeolocationPermissionGranted { get; set; }
     }
 }

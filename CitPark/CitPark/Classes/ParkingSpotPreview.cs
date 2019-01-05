@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Text;
 using Xamarin.Forms.GoogleMaps;
+using static CitPark.Settings;
 
 namespace CitPark.Classes
 {
@@ -22,6 +23,8 @@ namespace CitPark.Classes
         public bool Underground { get; set; }
         [JsonProperty("floor")]
         public int Floor { get; set; }
+        public int ParkTypes { get; set; }
+        public float Distance { get; set; }
         public ParkingSpotDetails Details { get; set; }
 
         /// <summary>
@@ -29,7 +32,7 @@ namespace CitPark.Classes
         /// Initializes a ParkingSpotPreview at 0,0, with an empty name and
         /// null ParkingSpotDetails.
         /// </summary>
-        public ParkingSpotPreview() : this(0, new double[] { 0d, 0d }, "", false, false, 0, null) { }
+        public ParkingSpotPreview() : this(0, new double[] { 0d, 0d }, "", false, false, 0, (int)ParkTypesEnum.None, 0.0f, null) { }
 
         /// <summary>
         /// Preview constructor for ParkingSpotPreview.
@@ -37,12 +40,14 @@ namespace CitPark.Classes
         /// name, and null ParkingSpotDetails.
         /// </summary>
         /// <param name="id">The ParkingSpotPreview id.</param>
+        /// <param name="coordinates">The ParkingSpotPreview position.</param>
         /// <param name="position">The ParkingSpotPreview position.</param>
         /// <param name="name">The ParkingSpotPreview name.</param>
         /// <param name="paid">If the ParkingSpotPreview is paid.</param>
         /// <param name="underground">If the ParkingSpotPreview is located underground.</param>
         /// <param name="floor">The ParkingSpotPreview's floor.</param>
-        public ParkingSpotPreview(int id, double[] coordinates, string name, bool paid, bool underground, int floor) : this(id, coordinates, name, paid, underground, floor, null) { }
+        /// <param name="distance">The ParkingSpotPreview's distance to the wanted point.</param>
+        public ParkingSpotPreview(int id, double[] coordinates, string name, bool paid, bool underground, int floor, float distance) : this(id, coordinates, name, paid, underground, floor, (int)ParkTypesEnum.None, distance, null) { }
 
         /// <summary>
         /// Full constructor for ParkingSpotPreview.
@@ -55,8 +60,10 @@ namespace CitPark.Classes
         /// <param name="paid">If the ParkingSpotPreview is paid.</param>
         /// <param name="underground">If the ParkingSpotPreview is located underground.</param>
         /// <param name="floor">The ParkingSpotPreview's floor.</param>
+        /// <param name="parkTypes">The ParkingSpotPreview's parking types.</param>
+        /// <param name="distance">The ParkingSpotPreview's distance to the wanted point.</param>
         /// <param name="details">The ParkingSpotPreview details.</param>
-        public ParkingSpotPreview(int id, double[] coordinates, string name, bool paid, bool underground, int floor, ParkingSpotDetails details)
+        public ParkingSpotPreview(int id, double[] coordinates, string name, bool paid, bool underground, int floor, int parkTypes, float distance, ParkingSpotDetails details)
         {
             Id = id;
             Coordinates = coordinates;
@@ -64,6 +71,8 @@ namespace CitPark.Classes
             Paid = paid;
             Underground = underground;
             Floor = floor;
+            ParkTypes = parkTypes;
+            Distance = distance;
             Details = details;
         }
 

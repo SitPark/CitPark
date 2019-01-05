@@ -1,9 +1,18 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:CitPark.Converters"
              x:Class="CitPark.ParksListModal">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <local:ParkTypeToStringConverter x:Key="parkTypeToString" />
+            <local:BoolToIsUndergroundString x:Key="boolToIsUndergroundString" />
+            <local:BoolToIsPaidStringConverter x:Key="boolToIsPaidString" />
+            <local:ParkSpotsToStringConverter x:Key="parkSpotsToString" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
     <ContentPage.Content>
-        <ListView x:Name="parksListView" ItemsSource="{Binding ParksList}" ItemSelected="parksListView_ItemSelected">
+        <ListView x:Name="parksListView" ItemsSource="{Binding ParksList}" ItemSelected="parksListView_ItemSelected" RowHeight="200">
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <ViewCell>
@@ -14,7 +23,22 @@
                                 <ColumnDefinition Width="auto" />
                             </Grid.ColumnDefinitions>
                             <Image x:Name="ParkImage" HeightRequest="100" Source="{Binding Details.Image}" Grid.Column="0" />
-                            <Label Text="{Binding Name}" Grid.Column="1" />
+                            <Grid Grid.Column="1">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="auto" />
+                                    <RowDefinition Height="auto" />
+                                    <RowDefinition Height="auto" />
+                                    <RowDefinition Height="auto" />
+                                    <RowDefinition Height="auto" />
+                                    <RowDefinition Height="auto" />
+                                </Grid.RowDefinitions>
+                                <Label Text="{Binding Name}" Grid.Row="0" FontAttributes="Bold" />
+                                <Label Text="{Binding Path=ParkTypes, Converter={StaticResource parkTypeToString}}" Grid.Row="1" />
+                                <Label Text="{Binding Path=Underground, Converter={StaticResource boolToIsUndergroundString}}" Grid.Row="2" />
+                                <Label Text="{Binding Path=Paid, Converter={StaticResource boolToIsPaidString}}" Grid.Row="3" />
+                                <Label Text="{Binding Path=Details.ParkSpots, Converter={StaticResource parkSpotsToString}}" Grid.Row="4" />
+                                <Label Text="{Binding Distance, StringFormat='{0:F1} km'}" Grid.Row="5" />
+                            </Grid>
                             <Button Text="Navigate" Grid.Column="2" />
                         </Grid>
                     </ViewCell>
