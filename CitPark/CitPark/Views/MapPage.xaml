@@ -3,6 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:maps="clr-namespace:Xamarin.Forms.GoogleMaps;assembly=Xamarin.Forms.GoogleMaps"
              xmlns:controls="clr-namespace:SuaveControls.Views;assembly=SuaveControls.FloatingActionButton"
+             xmlns:places="clr-namespace:DurianCode.PlacesSearchBar;assembly=PlacesSearchBar"
              x:Class="CitPark.MapPage"
              Title="Map">
     <NavigationPage.TitleView>
@@ -11,7 +12,7 @@
                 <ColumnDefinition Width="*" />
                 <ColumnDefinition Width="Auto" />
             </Grid.ColumnDefinitions>
-            <SearchBar x:Name="SearchBar" Placeholder="Search" SearchCommand="{Binding SearchCommand}" Text="{Binding value, Mode=TwoWay}" Grid.Column="0" />
+            <places:PlacesBar x:Name="SearchBar" Grid.Column="0" HeightRequest="20" Placeholder="Search places" />
             <Button x:Name="SearchButton" Text="S" Grid.Column="1" Clicked="SearchButton_Clicked" />
         </Grid>
     </NavigationPage.TitleView>
@@ -37,7 +38,15 @@
                           Grid.Row="0"
                           Grid.RowSpan="2"
                           Grid.Column="0"
-                          Grid.ColumnSpan="2" />
+                          Grid.ColumnSpan="2"
+                          CameraChanged="SpotsMap_CameraChanged" />
+                <ListView x:Name="ResultsList" Grid.Row="0" Grid.RowSpan="2" Grid.Column="0" Grid.ColumnSpan="2" IsVisible="False" BackgroundColor="White">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <TextCell Text="{Binding Description}" Detail="{Binding PLACE_ID}" />
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
                 <controls:FloatingActionButton x:Name="NearbyFAB"
                                                Image="ic_navigation.png"
                                                ButtonColor="#6200EE"

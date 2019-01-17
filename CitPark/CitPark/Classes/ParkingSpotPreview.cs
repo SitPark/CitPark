@@ -86,5 +86,10 @@ namespace CitPark.Classes
                 handler(this, new PropertyChangedEventArgs(propertyName));
             }
         }
+
+        public bool GetDetailsFromDB()
+        {
+            return false;
+        }
     }
 }

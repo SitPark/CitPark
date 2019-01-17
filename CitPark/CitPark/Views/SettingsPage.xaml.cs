@@ -26,6 +26,7 @@ namespace CitPark
             TimerNotificationSwitch.IsToggled = Settings.TimerNotification;
             TimerUpDown.Value = Settings.DefaultTimer;
             DistanceUnitPicker.SelectedItem = Settings.SelectedDistanceUnit;
+            RadiusUpDown.Value = Settings.SearchRadius;
         }
 
         private void TimerNotificationSwitch_Toggled(object sender, ToggledEventArgs e)

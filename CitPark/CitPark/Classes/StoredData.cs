@@ -1,25 +1,15 @@
 ﻿using CitPark.Classes;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Text;
 
 namespace CitPark
 {
-    class StoredData
+    public static class StoredData
     {
-        public static readonly StoredData _instance = new StoredData();
-
-        private List<ParkingSpotPreview> parkingSpotPreviews = new List<ParkingSpotPreview>();
-
-        /// <summary>
-        /// Gets or sets the parkingspotpreviews list.
-        /// </summary>
-        public List<ParkingSpotPreview> ParkingSpotPreviews
-        {
-            get { return parkingSpotPreviews; }
-            set { parkingSpotPreviews = value; }
-        }
-
-        public StoredData() { }
+        public static string GoogleApiKey = "AIzaSyD6NTzXfehYZQ5v02zaWb6nQt9-z_5QwtQ";
+        public static bool AdBought;
+        public static ObservableCollection<ParkingSpotPreview> ParkingSpotPreviews { get; set; } = new ObservableCollection<ParkingSpotPreview>();
     }
 }
