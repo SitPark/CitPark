@@ -104,6 +104,42 @@ namespace CitPark
             }
         }
 
+        public static bool CarPositionSaved
+        {
+            get
+            {
+                return Preferences.Get("car_position_saved", false);
+            }
+            set
+            {
+                Preferences.Set("car_position_saved", value);
+            }
+        }
+
+        public static double CarPositionLatitude
+        {
+            get
+            {
+                return double.Parse(Preferences.Get("car_position_latitude", "0"));
+            }
+            set
+            {
+                Preferences.Set("car_position_latitude", value);
+            }
+        }
+
+        public static double CarPositionLongitude
+        {
+            get
+            {
+                return double.Parse(Preferences.Get("car_position_longitude", "0"));
+            }
+            set
+            {
+                Preferences.Set("car_position_longitude", value);
+            }
+        }
+
         public static bool TimerActivated { get; set; }
         public static DateTime TimerLimit { get; set; }
         public static bool GeolocationPermissionGranted { get; set; }

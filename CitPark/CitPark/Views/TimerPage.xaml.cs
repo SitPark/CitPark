@@ -9,6 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Xamarin.Essentials;
 using Xamarin.Forms;
+using Xamarin.Forms.GoogleMaps;
 using Xamarin.Forms.Xaml;
 
 namespace CitPark.Views
@@ -17,8 +18,9 @@ namespace CitPark.Views
 	public partial class TimerPage : ContentPage
 	{
         private TimeSpan selectedTime = new TimeSpan(0, 0, 0);
+        Pin pin;
 
-		public TimerPage ()
+        public TimerPage ()
 		{
 			InitializeComponent ();
 
@@ -52,7 +54,61 @@ namespace CitPark.Views
                 {
                     PositionMap.MyLocationEnabled = false;
                     PositionMap.UiSettings.MyLocationButtonEnabled = false;
+                    PositionMap.UiSettings.MyLocationButtonEnabled = false;
                 }
+            }
+            else
+            {
+                PositionMap.MyLocationEnabled = true;
+                PositionMap.UiSettings.MyLocationButtonEnabled = true;
+            }
+
+            pin = new Pin()
+            {
+                Type = PinType.Place,
+                Label = "Your car position"
+            };
+
+            // Check if the car position has been saved.
+            if (Settings.CarPositionSaved)
+            {
+                double[] carPosition = new double[2];
+                carPosition[0] = Settings.CarPositionLatitude;
+                carPosition[1] = Settings.CarPositionLongitude;
+                MoveMap(new Location(carPosition[0], carPosition[1]));
+
+                pin.Position = new Position(Settings.CarPositionLatitude, Settings.CarPositionLongitude);
+            }
+            else
+            {
+                var location = GetLastKnownDeviceLocation().Result;
+
+                MoveMap(location);
+
+                pin.Position = new Position(location.Latitude, location.Longitude);
+            }
+
+            PositionMap.Pins.Add(pin);
+        }
+
+        public void MoveMap(Location location)
+        {
+            PositionMap.MoveToRegion(MapSpan.FromCenterAndRadius(new Position(location.Latitude, location.Longitude), Distance.FromKilometers(Settings.SearchRadius)), true);
+        }
+
+        private async Task<Location> GetLastKnownDeviceLocation()
+        {
+            try
+            {
+                var location = await Geolocation.GetLastKnownLocationAsync();
+
+                return location;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Exception: " + ex.Message);
+
+                return null;
             }
         }
 
@@ -61,14 +117,11 @@ namespace CitPark.Views
             TimerHandler();
         }
 
-        private void ResetMapButton_Clicked(object sender, EventArgs e)
-        {
-
-        }
-
         private void SavePositionButton_Clicked(object sender, EventArgs e)
         {
-
+            Settings.CarPositionLatitude = PositionMap.CameraPosition.Target.Latitude;
+            Settings.CarPositionLongitude = PositionMap.CameraPosition.Target.Longitude;
+            Settings.CarPositionSaved = true;
         }
 
         private void TimerHandler()
@@ -146,6 +199,21 @@ namespace CitPark.Views
                         RemindLabel.Text = "You'll be reminded in " + timeLeft + " minutes to pick up your car";
                     }
                 }
+            }
+        }
+
+        private void ClearPositionButton_Clicked(object sender, EventArgs e)
+        {
+            Settings.CarPositionSaved = false;
+        }
+
+        private void PositionMap_CameraChanged(object sender, CameraChangedEventArgs e)
+        {
+            // If the car position has been saved, don't move the pin
+            // otherwise, center it on the camera target.
+            if (!Settings.CarPositionSaved)
+            {
+                pin.Position = new Position(PositionMap.CameraPosition.Target.Latitude, PositionMap.CameraPosition.Target.Longitude);
             }
         }
     }
