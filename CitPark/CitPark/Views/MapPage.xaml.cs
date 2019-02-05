@@ -78,10 +78,10 @@ namespace CitPark
 
             MoveMap(location);
 
-            RefreshMap(location);
+            await RefreshMap(location);
         }
 
-        public void RefreshMap(Location location)
+        public async Task RefreshMap(Location location)
         {
             // Verify if we have permission to get current location.
             if (Settings.GeolocationPermissionGranted)
@@ -90,7 +90,7 @@ namespace CitPark
                 try
                 {
                     // Pass current location and retrieves parks nearby.
-                    GetParksByLocation(location);
+                    await GetParksByLocation(location);
 
                     SpotsMap.Pins.Clear();
 
@@ -156,7 +156,7 @@ namespace CitPark
             }
         }
         
-        private void GetParksByLocation(Location location)
+        private async Task GetParksByLocation(Location location)
         {
             var request = HttpWebRequest.Create("http://citpark.tech/api/park/read_by_location.php?latitude=" + location.Latitude.ToString() + "&longitude=" + location.Longitude.ToString() + "&radius=" + Settings.SearchRadius * 1000);
             request.ContentType = "application/json";
@@ -166,7 +166,7 @@ namespace CitPark
 
             try
             {
-                using (HttpWebResponse response = request.GetResponse() as HttpWebResponse)
+                using (HttpWebResponse response = await request.GetResponseAsync() as HttpWebResponse)
                 {
                     // Check if server has returned success status code.
                     if (response.StatusCode != HttpStatusCode.OK)
@@ -202,7 +202,7 @@ namespace CitPark
 
         private async void SearchButton_Clicked(object sender, EventArgs e)
         {
-            await Navigation.PushModalAsync(new ParksListModal());
+            await Navigation.PushModalAsync(new ParksListModal(null));
         }
 
         private void SearchBar_PlacesRetrieved(object sender, AutoCompleteResult result)
@@ -243,15 +243,15 @@ namespace CitPark
 
                 MoveMap(new Location(place.Latitude, place.Longitude));
 
-                RefreshMap(new Location(place.Latitude, place.Longitude));
+                await RefreshMap(new Location(place.Latitude, place.Longitude));
 
-                await Navigation.PushModalAsync(new ParksListModal());
+                await Navigation.PushModalAsync(new ParksListModal(new Location(place.Latitude, place.Longitude)));
             }
         }
 
-        private void SpotsMap_CameraChanged(object sender, CameraChangedEventArgs e)
+        private async void SpotsMap_CameraChanged(object sender, CameraChangedEventArgs e)
         {
-            RefreshMap(new Location(e.Position.Target.Latitude, e.Position.Target.Longitude));
+            await RefreshMap(new Location(e.Position.Target.Latitude, e.Position.Target.Longitude));
         }
     }
 }

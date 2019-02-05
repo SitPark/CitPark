@@ -23,8 +23,9 @@ namespace CitPark.Classes
         public bool Underground { get; set; }
         [JsonProperty("floor")]
         public int Floor { get; set; }
+        [JsonProperty("park_types")]
         public int ParkTypes { get; set; }
-        public float Distance { get; set; }
+        public double Distance { get; set; }
         public ParkingSpotDetails Details { get; set; }
 
         /// <summary>
