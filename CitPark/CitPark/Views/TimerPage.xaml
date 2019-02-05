@@ -6,29 +6,31 @@
              x:Class="CitPark.Views.TimerPage"
              Title="Timer">
     <ContentPage.Content>
-        <Grid>
-            <Grid.RowDefinitions>
-                <RowDefinition Height="Auto" />
-                <RowDefinition Height="Auto" />
-                <RowDefinition Height="Auto" />
-                <RowDefinition Height="Auto" />
-                <RowDefinition Height="*" />
-                <RowDefinition Height="Auto" />
-                <RowDefinition Height="Auto" />
-            </Grid.RowDefinitions>
-            <Label Text="Reminder" HorizontalOptions="Center" FontSize="Large" Grid.Row="0" />
-            <Label x:Name="RemindLabel" Text="How long until you want us to remind of your car?" HorizontalOptions="Center" FontSize="Medium" Grid.Row="1" />
-            <TimePicker x:Name="WarnTimePicker" PropertyChanged="WarnTimePicker_PropertyChanged" Grid.Row="2" />
-            <Button x:Name="StartTimerButton" Text="Start Timer" Grid.Row="3" Clicked="StartTimerButton_Clicked" />
-            <maps:Map x:Name="PositionMap" Grid.Row="4" CameraChanged="PositionMap_CameraChanged" />
-            <Grid Grid.Row="5">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*" />
-                    <ColumnDefinition Width="auto" />
-                </Grid.ColumnDefinitions>
-                <Button x:Name="SavePositionButton" BackgroundColor="Blue" TextColor="White" Text="Save car position" Clicked="SavePositionButton_Clicked" />
-                <Button x:Name="ClearPositionButton" Grid.Column="1" Text="Clear position" Clicked="ClearPositionButton_Clicked" />
+        <ScrollView>
+            <Grid Padding="10,10,10,10">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+                <Label Text="Reminder" HorizontalOptions="Center" FontSize="Large" Grid.Row="0" />
+                <Label x:Name="RemindLabel" Text="How long until you want us to remind of your car?" HorizontalOptions="Center" FontSize="Medium" Grid.Row="1" />
+                <TimePicker x:Name="WarnTimePicker" PropertyChanged="WarnTimePicker_PropertyChanged" Grid.Row="2" />
+                <Button x:Name="StartTimerButton" Text="Start Timer" Grid.Row="3" Clicked="StartTimerButton_Clicked" />
+                <maps:Map x:Name="PositionMap" Grid.Row="4" CameraChanged="PositionMap_CameraChanged" />
+                <Grid Grid.Row="5">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="auto" />
+                    </Grid.ColumnDefinitions>
+                    <Button x:Name="SavePositionButton" BackgroundColor="Blue" TextColor="White" Text="Save car position" Clicked="SavePositionButton_Clicked" />
+                    <Button x:Name="ClearPositionButton" Grid.Column="1" Text="Clear position" Clicked="ClearPositionButton_Clicked" />
+                </Grid>
             </Grid>
-        </Grid>
+        </ScrollView>
     </ContentPage.Content>
 </ContentPage>

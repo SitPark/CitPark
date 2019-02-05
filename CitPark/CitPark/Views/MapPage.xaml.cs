@@ -367,5 +367,16 @@ namespace CitPark
                 return null;
             }
         }
+
+        private async void NearbyFAB_Clicked(object sender, EventArgs e)
+        {
+            Location location = await GetLastKnownDeviceLocation();
+
+            MoveMap(location);
+
+            await RefreshMap(location);
+
+            await Navigation.PushModalAsync(new ParksListModal(location));
+        }
     }
 }

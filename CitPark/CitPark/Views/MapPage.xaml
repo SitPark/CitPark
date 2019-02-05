@@ -47,7 +47,8 @@
                                                Image="ic_navigation.png"
                                                ButtonColor="#6200EE"
                                                Grid.Row="1"
-                                               Grid.Column="1" />
+                                               Grid.Column="1"
+                                               Clicked="NearbyFAB_Clicked"/>
 
             </Grid>
             <Image x:Name="AdSpace"

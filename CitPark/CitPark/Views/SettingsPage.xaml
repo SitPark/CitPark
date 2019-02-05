@@ -6,7 +6,7 @@
              Title="Settings">
     <ContentPage.Content>
         <ScrollView>
-            <Grid>
+            <Grid Padding="10,10,10,10">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto" />
                     <RowDefinition Height="Auto" />
@@ -42,34 +42,25 @@
                     <Picker x:Name="DistanceUnitPicker" Grid.Column="1"  SelectedIndexChanged="DistanceUnitPicker_SelectedIndexChanged" />
                 </Grid>
                 <Grid Grid.Row="3">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="auto" />
+                        <RowDefinition Height="auto" />
+                        <RowDefinition Height="auto" />
+                    </Grid.RowDefinitions>
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="auto" />
                         <ColumnDefinition Width="*" />
-                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="auto" />
                     </Grid.ColumnDefinitions>
-                    <Label Text="Default timer" Grid.Column="0" VerticalOptions="Center" />
+                    <Label Text="Default timer" VerticalOptions="Center" />
                     <Controls:NumericUpDown x:Name="TimerUpDown" Maximum="720" Minimum="10" Increment="5" Value="10" Grid.Column="1" UpButtonClicked="TimerUpDown_UpButtonClicked" DownButtonClicked="TimerUpDown_DownButtonClicked" EntryUnfocused="TimerUpDown_EntryUnfocused" />
-                    <Label Text="minutes" Grid.Column="2" VerticalOptions="Center" />
-                </Grid>
-                <Grid Grid.Row="4">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="Auto" />
-                        <ColumnDefinition Width="*" />
-                        <ColumnDefinition Width="Auto" />
-                    </Grid.ColumnDefinitions>
-                    <Label Text="Time to warn" Grid.Column="0" VerticalOptions="Center" />
-                    <Controls:NumericUpDown x:Name="TimeWarningUpDown" Maximum="60" Minimum="5" Increment="5" Value="5" Grid.Column="1" UpButtonClicked="TimeWarningUpDown_UpButtonClicked" DownButtonClicked="TimeWarningUpDown_DownButtonClicked" EntryUnfocused="TimeWarningUpDown_EntryUnfocused" />
-                    <Label Text="minutes" Grid.Column="2" VerticalOptions="Center" />
-                </Grid>
-                <Grid Grid.Row="5">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="Auto" />
-                        <ColumnDefinition Width="*" />
-                        <ColumnDefinition Width="Auto" />
-                    </Grid.ColumnDefinitions>
-                    <Label Text="Search radius" Grid.Column="0" VerticalOptions="Center" />
-                    <Controls:NumericUpDown  x:Name="RadiusUpDown" Maximum="60" Minimum="1" Increment="1" Grid.Column="1" UpButtonClicked="RadiusUpDown_UpButtonClicked" DownButtonClicked="RadiusUpDown_DownButtonClicked" EntryUnfocused="RadiusUpDown_EntryUnfocused" />
-                    <Label Text="Km" Grid.Column="2" VerticalOptions="Center" />
+                    <Label Text="minutes" Grid.Column="2" VerticalOptions="Center" HorizontalTextAlignment="Start" />
+                    <Label Text="Time to warn" Grid.Row="1" VerticalOptions="Center" />
+                    <Controls:NumericUpDown x:Name="TimeWarningUpDown" Maximum="60" Minimum="5" Increment="5" Value="5" Grid.Row="1" Grid.Column="1" UpButtonClicked="TimeWarningUpDown_UpButtonClicked" DownButtonClicked="TimeWarningUpDown_DownButtonClicked" EntryUnfocused="TimeWarningUpDown_EntryUnfocused" />
+                    <Label Text="minutes" Grid.Row="1" Grid.Column="2" VerticalOptions="Center" HorizontalTextAlignment="Start" />
+                    <Label Text="Search radius" Grid.Row="2" VerticalOptions="Center" />
+                    <Controls:NumericUpDown  x:Name="RadiusUpDown" Maximum="60" Minimum="1" Increment="1" Grid.Row="2" Grid.Column="1" UpButtonClicked="RadiusUpDown_UpButtonClicked" DownButtonClicked="RadiusUpDown_DownButtonClicked" EntryUnfocused="RadiusUpDown_EntryUnfocused" />
+                    <Label Text="Km" Grid.Row="2" Grid.Column="2" VerticalOptions="Center" HorizontalTextAlignment="Start" />
                 </Grid>
                 <Grid Grid.Row="6">
                     <Grid.ColumnDefinitions>
