@@ -8,12 +8,7 @@
              Title="Map">
     <NavigationPage.TitleView>
         <Grid>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*" />
-                <ColumnDefinition Width="Auto" />
-            </Grid.ColumnDefinitions>
-            <places:PlacesBar x:Name="SearchBar" Grid.Column="0" HeightRequest="20" Placeholder="Search places" />
-            <Button x:Name="SearchButton" Text="S" Grid.Column="1" Clicked="SearchButton_Clicked" />
+            <places:PlacesBar x:Name="SearchBar" HeightRequest="20" Placeholder="Search places" />
         </Grid>
     </NavigationPage.TitleView>
     <ContentPage.Content>

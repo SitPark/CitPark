@@ -200,11 +200,6 @@ namespace CitPark
             }
         }
 
-        private async void SearchButton_Clicked(object sender, EventArgs e)
-        {
-            await Navigation.PushModalAsync(new ParksListModal(null));
-        }
-
         private void SearchBar_PlacesRetrieved(object sender, AutoCompleteResult result)
         {
             ResultsList.ItemsSource = result.AutoCompletePlaces;

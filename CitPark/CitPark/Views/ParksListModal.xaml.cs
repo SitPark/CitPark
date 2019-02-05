@@ -1,4 +1,5 @@
 ﻿using CitPark.Classes;
+using CitPark.Views;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -18,7 +19,6 @@ namespace CitPark
 	[XamlCompilation(XamlCompilationOptions.Compile)]
 	public partial class ParksListModal : ContentPage
 	{
-        public ObservableCollection<ParkingSpotDetails> parkingSpotDetails = new ObservableCollection<ParkingSpotDetails>();
         public ObservableCollection<ParkingSpotPreview> ParksList = new ObservableCollection<ParkingSpotPreview>();
         public Location locationToLoad;
 
@@ -27,43 +27,44 @@ namespace CitPark
             locationToLoad = location;
 
 			InitializeComponent ();
-
-            /*ParkingSpotDetails parkingSpotDetails = new ParkingSpotDetails(0, new ParkTimes(), new Dictionary<ParkTypesEnum, int> { { ParkTypesEnum.Family, 3 } }, ImageSource.FromUri(new Uri("http://citpark.tech/api/park_images/1545932271.PNG")));
-
-            ParksList.Add(new ParkingSpotPreview(0, new double[] { 0d, 0d }, "lmao", false, false, 0, (int)ParkTypesEnum.Family, 1.2f, parkingSpotDetails));
-            ParksList.Add(new ParkingSpotPreview(0, new double[] { 0d, 0d }, "borghini", false, false, 0, (int)(ParkTypesEnum.Bike | ParkTypesEnum.Family), 4.3f, parkingSpotDetails));*/
 		}
 
         protected override async void OnAppearing()
         {
-            await GetParksByLocation(locationToLoad);
-
-            foreach(ParkingSpotPreview parkingSpotPreview in ParksList)
+            if (ParksList.Count == 0)
             {
-                parkingSpotPreview.Details = new ParkingSpotDetails();
+                await GetParksByLocation(locationToLoad);
 
-                ParkSpot[] parkSpots = await GetParkingSpot(parkingSpotPreview.Id);
-
-                ParkTypesEnum parkTypesEnum = ParkTypesEnum.None;
-
-                foreach(ParkSpot parkSpot in parkSpots)
+                foreach (ParkingSpotPreview parkingSpotPreview in ParksList)
                 {
-                    parkTypesEnum |= (ParkTypesEnum)parkSpot.CategoryId;
-                    parkingSpotPreview.Details.ParkSpots.Add((ParkTypesEnum)parkSpot.CategoryId, parkSpot.NumSpots);
+                    parkingSpotPreview.Details = new ParkingSpotDetails();
+
+                    ParkSpot[] parkSpots = await GetParkingSpot(parkingSpotPreview.Id);
+
+                    ParkTypesEnum parkTypesEnum = ParkTypesEnum.None;
+
+                    foreach (ParkSpot parkSpot in parkSpots)
+                    {
+                        parkTypesEnum |= (ParkTypesEnum)parkSpot.CategoryId;
+                        parkingSpotPreview.Details.ParkSpots.Add((ParkTypesEnum)parkSpot.CategoryId, parkSpot.NumSpots);
+                    }
+
+                    parkingSpotPreview.ParkTypes = (int)parkTypesEnum;
+                    parkingSpotPreview.Details.Image = await GetParkingSpotImage(parkingSpotPreview.Id);
+
+                    parkingSpotPreview.Distance = Location.CalculateDistance(locationToLoad, new Location(parkingSpotPreview.Coordinates[0], parkingSpotPreview.Coordinates[1]), DistanceUnits.Kilometers);
                 }
 
-                parkingSpotPreview.ParkTypes = (int)parkTypesEnum;
-                parkingSpotPreview.Details.Image = await GetParkingSpotImage(parkingSpotPreview.Id);
-
-                parkingSpotPreview.Distance = Location.CalculateDistance(locationToLoad, new Location(parkingSpotPreview.Coordinates[0], parkingSpotPreview.Coordinates[1]), DistanceUnits.Kilometers);
+                parksListView.ItemsSource = ParksList;
             }
-
-            parksListView.ItemsSource = ParksList;
         }
 
-        private void parksListView_ItemSelected(object sender, SelectedItemChangedEventArgs e)
+        private async void parksListView_ItemSelected(object sender, SelectedItemChangedEventArgs e)
         {
+            // Get selected parking spot.
+            ParkingSpotPreview parkingSpotPreview = (ParkingSpotPreview)e.SelectedItem;
 
+            await Navigation.PushModalAsync(new ParkDetailsPage(parkingSpotPreview));
         }
 
         private async Task GetParksByLocation(Location location)
@@ -192,6 +193,18 @@ namespace CitPark
 
                 return null;
             }
+        }
+
+        private void Button_Clicked(object sender, EventArgs e)
+        {
+            // Get selected parking spot.
+            var button = sender as Button;
+            ParkingSpotPreview parkingSpotPreview = button.BindingContext as ParkingSpotPreview;
+
+            // Launch Google Maps and navigate to parking spot.
+            var request = string.Format("http://maps.google.com/?daddr=" + parkingSpotPreview.Coordinates[0] + "," + parkingSpotPreview.Coordinates[1]);
+
+            Device.OpenUri(new Uri(request));
         }
     }
 
