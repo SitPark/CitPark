@@ -1,4 +1,5 @@
-﻿using CitPark.Classes;
+﻿using Acr.UserDialogs;
+using CitPark.Classes;
 using Newtonsoft.Json;
 using Plugin.Media;
 using Plugin.Media.Abstractions;
@@ -37,6 +38,8 @@ namespace CitPark.Views
             {ParkTypesEnum.Eletric, 0 },
             {ParkTypesEnum.Bike, 0 }
         };
+
+        public bool SameTimeForAll = false;
 
         private bool FirstTimeLoad = true;
         private string ImagePath = "";
@@ -134,20 +137,33 @@ namespace CitPark.Views
 
         private async void ConfirmButton_Clicked(object sender, EventArgs e)
         {
-            CrossToastPopUp.Current.ShowToastMessage("Creating parking spot, please wait...");
-
-            int parkId = await InsertPark();
-
-            if(parkId > 0)
+            // Check if everything was filled out
+            if (!string.IsNullOrWhiteSpace(ParkNameEntry.Text) && !string.IsNullOrWhiteSpace(FloorPicker.Text))
             {
-                if(await InsertImage(parkId))
+                using (IProgressDialog progress = UserDialogs.Instance.Loading("Submiting parking spot", null, null, true, MaskType.Black))
                 {
-                    if(await InsertParkSpot(parkId))
+                    int parkId = await InsertPark();
+
+                    if (parkId > 0)
                     {
-                        if(await InsertParkTime(parkId))
+                        if (await InsertImage(parkId))
                         {
-                            CrossToastPopUp.Current.ShowToastSuccess("Parking spot created successfully!");
-                            await Navigation.PopAsync();
+                            if (await InsertParkSpot(parkId))
+                            {
+                                if (await InsertParkTime(parkId))
+                                {
+                                    CrossToastPopUp.Current.ShowToastSuccess("Parking spot created successfully!");
+                                    await Navigation.PopAsync();
+                                }
+                                else
+                                {
+                                    CrossToastPopUp.Current.ShowToastError("Error creating parking spot.");
+                                }
+                            }
+                            else
+                            {
+                                CrossToastPopUp.Current.ShowToastError("Error creating parking spot.");
+                            }
                         }
                         else
                         {
@@ -159,14 +175,10 @@ namespace CitPark.Views
                         CrossToastPopUp.Current.ShowToastError("Error creating parking spot.");
                     }
                 }
-                else
-                {
-                    CrossToastPopUp.Current.ShowToastError("Error creating parking spot.");
-                }
             }
             else
             {
-                CrossToastPopUp.Current.ShowToastError("Error creating parking spot.");
+                CrossToastPopUp.Current.ShowToastError("You must fill all details to submit a parking spot.");
             }
         }
 

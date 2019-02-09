@@ -103,6 +103,11 @@ namespace CitPark.Views
                 SundayOpenTimePicker.Time = AddParkingSpotPage.ParkingSpotPreview.Details.ParkTimes.ParkingTimes[WeekDay.Sunday].TimeOpen;
                 SundayCloseTimePicker.Time = AddParkingSpotPage.ParkingSpotPreview.Details.ParkTimes.ParkingTimes[WeekDay.Sunday].TimeClose;
             }
+
+            if (AddParkingSpotPage.SameTimeForAll)
+            {
+                SameTimeSwitch.IsToggled = true;
+            }
         }
 
         private async void Cancel_Clicked(object sender, EventArgs e)
@@ -112,28 +117,56 @@ namespace CitPark.Views
 
         private async void Save_Clicked(object sender, EventArgs e)
         {
-            AddParkingSpotPage.ParkingSpotPreview.Details.ParkTimes.ParkingTimes[WeekDay.Monday].AlwaysOpen = MondayAllDay.IsToggled;
-            AddParkingSpotPage.ParkingSpotPreview.Details.ParkTimes.ParkingTimes[WeekDay.Tuesday].AlwaysOpen = TuesdayAllDay.IsToggled;
-            AddParkingSpotPage.ParkingSpotPreview.Details.ParkTimes.ParkingTimes[WeekDay.Wednesday].AlwaysOpen = WednesdayAllDay.IsToggled;
-            AddParkingSpotPage.ParkingSpotPreview.Details.ParkTimes.ParkingTimes[WeekDay.Thursday].AlwaysOpen = ThursdayAllDay.IsToggled;
-            AddParkingSpotPage.ParkingSpotPreview.Details.ParkTimes.ParkingTimes[WeekDay.Friday].AlwaysOpen = FridayAllDay.IsToggled;
-            AddParkingSpotPage.ParkingSpotPreview.Details.ParkTimes.ParkingTimes[WeekDay.Saturday].AlwaysOpen = SaturdayAllDay.IsToggled;
-            AddParkingSpotPage.ParkingSpotPreview.Details.ParkTimes.ParkingTimes[WeekDay.Sunday].AlwaysOpen = SundayAllDay.IsToggled;
+            if (AddParkingSpotPage.SameTimeForAll)
+            {
+                AddParkingSpotPage.ParkingSpotPreview.Details.ParkTimes.ParkingTimes[WeekDay.Monday].AlwaysOpen = MondayAllDay.IsToggled;
+                AddParkingSpotPage.ParkingSpotPreview.Details.ParkTimes.ParkingTimes[WeekDay.Tuesday].AlwaysOpen = MondayAllDay.IsToggled;
+                AddParkingSpotPage.ParkingSpotPreview.Details.ParkTimes.ParkingTimes[WeekDay.Wednesday].AlwaysOpen = MondayAllDay.IsToggled;
+                AddParkingSpotPage.ParkingSpotPreview.Details.ParkTimes.ParkingTimes[WeekDay.Thursday].AlwaysOpen = MondayAllDay.IsToggled;
+                AddParkingSpotPage.ParkingSpotPreview.Details.ParkTimes.ParkingTimes[WeekDay.Friday].AlwaysOpen = MondayAllDay.IsToggled;
+                AddParkingSpotPage.ParkingSpotPreview.Details.ParkTimes.ParkingTimes[WeekDay.Saturday].AlwaysOpen = MondayAllDay.IsToggled;
+                AddParkingSpotPage.ParkingSpotPreview.Details.ParkTimes.ParkingTimes[WeekDay.Sunday].AlwaysOpen = MondayAllDay.IsToggled;
 
-            AddParkingSpotPage.ParkingSpotPreview.Details.ParkTimes.ParkingTimes[WeekDay.Monday].TimeOpen = MondayOpenTimePicker.Time;
-            AddParkingSpotPage.ParkingSpotPreview.Details.ParkTimes.ParkingTimes[WeekDay.Monday].TimeClose = MondayCloseTimePicker.Time;
-            AddParkingSpotPage.ParkingSpotPreview.Details.ParkTimes.ParkingTimes[WeekDay.Tuesday].TimeOpen = TuesdayOpenTimePicker.Time;
-            AddParkingSpotPage.ParkingSpotPreview.Details.ParkTimes.ParkingTimes[WeekDay.Tuesday].TimeClose = TuesdayCloseTimePicker.Time;
-            AddParkingSpotPage.ParkingSpotPreview.Details.ParkTimes.ParkingTimes[WeekDay.Wednesday].TimeOpen = WednesdayOpenTimePicker.Time;
-            AddParkingSpotPage.ParkingSpotPreview.Details.ParkTimes.ParkingTimes[WeekDay.Wednesday].TimeClose = WednesdayCloseTimePicker.Time;
-            AddParkingSpotPage.ParkingSpotPreview.Details.ParkTimes.ParkingTimes[WeekDay.Thursday].TimeOpen = ThursdayOpenTimePicker.Time;
-            AddParkingSpotPage.ParkingSpotPreview.Details.ParkTimes.ParkingTimes[WeekDay.Thursday].TimeClose = ThursdayCloseTimePicker.Time;
-            AddParkingSpotPage.ParkingSpotPreview.Details.ParkTimes.ParkingTimes[WeekDay.Friday].TimeOpen = FridayOpenTimePicker.Time;
-            AddParkingSpotPage.ParkingSpotPreview.Details.ParkTimes.ParkingTimes[WeekDay.Friday].TimeClose = FridayCloseTimePicker.Time;
-            AddParkingSpotPage.ParkingSpotPreview.Details.ParkTimes.ParkingTimes[WeekDay.Saturday].TimeOpen = SaturdayOpenTimePicker.Time;
-            AddParkingSpotPage.ParkingSpotPreview.Details.ParkTimes.ParkingTimes[WeekDay.Saturday].TimeClose = SaturdayCloseTimePicker.Time;
-            AddParkingSpotPage.ParkingSpotPreview.Details.ParkTimes.ParkingTimes[WeekDay.Sunday].TimeOpen = SundayOpenTimePicker.Time;
-            AddParkingSpotPage.ParkingSpotPreview.Details.ParkTimes.ParkingTimes[WeekDay.Sunday].TimeClose = SundayCloseTimePicker.Time;
+                AddParkingSpotPage.ParkingSpotPreview.Details.ParkTimes.ParkingTimes[WeekDay.Monday].TimeOpen = MondayOpenTimePicker.Time;
+                AddParkingSpotPage.ParkingSpotPreview.Details.ParkTimes.ParkingTimes[WeekDay.Monday].TimeClose = MondayCloseTimePicker.Time;
+                AddParkingSpotPage.ParkingSpotPreview.Details.ParkTimes.ParkingTimes[WeekDay.Tuesday].TimeOpen = MondayOpenTimePicker.Time;
+                AddParkingSpotPage.ParkingSpotPreview.Details.ParkTimes.ParkingTimes[WeekDay.Tuesday].TimeClose = MondayCloseTimePicker.Time;
+                AddParkingSpotPage.ParkingSpotPreview.Details.ParkTimes.ParkingTimes[WeekDay.Wednesday].TimeOpen = MondayOpenTimePicker.Time;
+                AddParkingSpotPage.ParkingSpotPreview.Details.ParkTimes.ParkingTimes[WeekDay.Wednesday].TimeClose = MondayCloseTimePicker.Time;
+                AddParkingSpotPage.ParkingSpotPreview.Details.ParkTimes.ParkingTimes[WeekDay.Thursday].TimeOpen = MondayOpenTimePicker.Time;
+                AddParkingSpotPage.ParkingSpotPreview.Details.ParkTimes.ParkingTimes[WeekDay.Thursday].TimeClose = MondayCloseTimePicker.Time;
+                AddParkingSpotPage.ParkingSpotPreview.Details.ParkTimes.ParkingTimes[WeekDay.Friday].TimeOpen = MondayOpenTimePicker.Time;
+                AddParkingSpotPage.ParkingSpotPreview.Details.ParkTimes.ParkingTimes[WeekDay.Friday].TimeClose = MondayCloseTimePicker.Time;
+                AddParkingSpotPage.ParkingSpotPreview.Details.ParkTimes.ParkingTimes[WeekDay.Saturday].TimeOpen = MondayOpenTimePicker.Time;
+                AddParkingSpotPage.ParkingSpotPreview.Details.ParkTimes.ParkingTimes[WeekDay.Saturday].TimeClose = MondayCloseTimePicker.Time;
+                AddParkingSpotPage.ParkingSpotPreview.Details.ParkTimes.ParkingTimes[WeekDay.Sunday].TimeOpen = MondayOpenTimePicker.Time;
+                AddParkingSpotPage.ParkingSpotPreview.Details.ParkTimes.ParkingTimes[WeekDay.Sunday].TimeClose = MondayCloseTimePicker.Time;
+            }
+            else
+            {
+                AddParkingSpotPage.ParkingSpotPreview.Details.ParkTimes.ParkingTimes[WeekDay.Monday].AlwaysOpen = MondayAllDay.IsToggled;
+                AddParkingSpotPage.ParkingSpotPreview.Details.ParkTimes.ParkingTimes[WeekDay.Tuesday].AlwaysOpen = TuesdayAllDay.IsToggled;
+                AddParkingSpotPage.ParkingSpotPreview.Details.ParkTimes.ParkingTimes[WeekDay.Wednesday].AlwaysOpen = WednesdayAllDay.IsToggled;
+                AddParkingSpotPage.ParkingSpotPreview.Details.ParkTimes.ParkingTimes[WeekDay.Thursday].AlwaysOpen = ThursdayAllDay.IsToggled;
+                AddParkingSpotPage.ParkingSpotPreview.Details.ParkTimes.ParkingTimes[WeekDay.Friday].AlwaysOpen = FridayAllDay.IsToggled;
+                AddParkingSpotPage.ParkingSpotPreview.Details.ParkTimes.ParkingTimes[WeekDay.Saturday].AlwaysOpen = SaturdayAllDay.IsToggled;
+                AddParkingSpotPage.ParkingSpotPreview.Details.ParkTimes.ParkingTimes[WeekDay.Sunday].AlwaysOpen = SundayAllDay.IsToggled;
+
+                AddParkingSpotPage.ParkingSpotPreview.Details.ParkTimes.ParkingTimes[WeekDay.Monday].TimeOpen = MondayOpenTimePicker.Time;
+                AddParkingSpotPage.ParkingSpotPreview.Details.ParkTimes.ParkingTimes[WeekDay.Monday].TimeClose = MondayCloseTimePicker.Time;
+                AddParkingSpotPage.ParkingSpotPreview.Details.ParkTimes.ParkingTimes[WeekDay.Tuesday].TimeOpen = TuesdayOpenTimePicker.Time;
+                AddParkingSpotPage.ParkingSpotPreview.Details.ParkTimes.ParkingTimes[WeekDay.Tuesday].TimeClose = TuesdayCloseTimePicker.Time;
+                AddParkingSpotPage.ParkingSpotPreview.Details.ParkTimes.ParkingTimes[WeekDay.Wednesday].TimeOpen = WednesdayOpenTimePicker.Time;
+                AddParkingSpotPage.ParkingSpotPreview.Details.ParkTimes.ParkingTimes[WeekDay.Wednesday].TimeClose = WednesdayCloseTimePicker.Time;
+                AddParkingSpotPage.ParkingSpotPreview.Details.ParkTimes.ParkingTimes[WeekDay.Thursday].TimeOpen = ThursdayOpenTimePicker.Time;
+                AddParkingSpotPage.ParkingSpotPreview.Details.ParkTimes.ParkingTimes[WeekDay.Thursday].TimeClose = ThursdayCloseTimePicker.Time;
+                AddParkingSpotPage.ParkingSpotPreview.Details.ParkTimes.ParkingTimes[WeekDay.Friday].TimeOpen = FridayOpenTimePicker.Time;
+                AddParkingSpotPage.ParkingSpotPreview.Details.ParkTimes.ParkingTimes[WeekDay.Friday].TimeClose = FridayCloseTimePicker.Time;
+                AddParkingSpotPage.ParkingSpotPreview.Details.ParkTimes.ParkingTimes[WeekDay.Saturday].TimeOpen = SaturdayOpenTimePicker.Time;
+                AddParkingSpotPage.ParkingSpotPreview.Details.ParkTimes.ParkingTimes[WeekDay.Saturday].TimeClose = SaturdayCloseTimePicker.Time;
+                AddParkingSpotPage.ParkingSpotPreview.Details.ParkTimes.ParkingTimes[WeekDay.Sunday].TimeOpen = SundayOpenTimePicker.Time;
+                AddParkingSpotPage.ParkingSpotPreview.Details.ParkTimes.ParkingTimes[WeekDay.Sunday].TimeClose = SundayCloseTimePicker.Time;
+            }
 
             await Navigation.PopModalAsync();
         }
@@ -234,6 +267,11 @@ namespace CitPark.Views
                 SundayOpenTimePicker.IsEnabled = true;
                 SundayCloseTimePicker.IsEnabled = true;
             }
+        }
+
+        private void SameTimeSwitch_Toggled(object sender, ToggledEventArgs e)
+        {
+            AddParkingSpotPage.SameTimeForAll = SameTimeSwitch.IsToggled;
         }
     }
 }

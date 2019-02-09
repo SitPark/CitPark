@@ -15,6 +15,7 @@
                     <RowDefinition Height="Auto" />
                     <RowDefinition Height="Auto" />
                     <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
                 </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*" />
@@ -53,6 +54,8 @@
                 <TimePicker x:Name="FridayCloseTimePicker" Grid.Column="3" Grid.Row="5" />
                 <TimePicker x:Name="SaturdayCloseTimePicker" Grid.Column="3" Grid.Row="6" />
                 <TimePicker x:Name="SundayCloseTimePicker" Grid.Column="3" Grid.Row="7" />
+                <Label Text="Same time for all days (all days will have the time of monday)" Grid.Row="8" Grid.ColumnSpan="3" />
+                <Switch x:Name="SameTimeSwitch" Grid.Row="8" Grid.Column="3" Toggled="SameTimeSwitch_Toggled" />
             </Grid>
             <Grid>
                 <Grid.ColumnDefinitions>

@@ -8,6 +8,7 @@ using Android.Widget;
 using Android.OS;
 using Plugin.Permissions;
 using Plugin.CurrentActivity;
+using Acr.UserDialogs;
 
 namespace CitPark.Droid
 {
@@ -32,6 +33,8 @@ namespace CitPark.Droid
 
             // Initialize maps
             Xamarin.FormsGoogleMaps.Init(this, savedInstanceState);
+
+            UserDialogs.Init(this);
 
             LoadApplication(new App());
         }

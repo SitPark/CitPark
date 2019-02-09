@@ -62,7 +62,7 @@
                         <ColumnDefinition Width="*" />
                     </Grid.ColumnDefinitions>
                     <Label Text="Floor number:" Grid.Column="0" />
-                    <Entry x:Name="FloorPicker" Keyboard="Numeric" Grid.Column="1" />
+                    <Entry x:Name="FloorPicker" Keyboard="Numeric" Text="0" Grid.Column="1" />
                 </Grid>
                 <Grid Grid.Row="5">
                     <Grid.ColumnDefinitions>
@@ -80,7 +80,7 @@
                     <Label Text="Times:" Grid.Column="0" />
                     <Button x:Name="TimesButton" Text="Select times" Clicked="TimesButton_Clicked" Grid.Column="1" />
                 </Grid>
-                <maps:Map x:Name="PositionMap" Grid.Row="8" HeightRequest="200" CameraChanged="PositionMap_CameraChanged" />
+                <maps:Map x:Name="PositionMap" Grid.Row="8" HeightRequest="400" CameraChanged="PositionMap_CameraChanged" />
                 <Grid Grid.Row="9">
                     <Button x:Name="ConfirmButton" Text="Confirm" Clicked="ConfirmButton_Clicked" />
                 </Grid>
