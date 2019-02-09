@@ -15,6 +15,7 @@
     <PackageReference Include="Newtonsoft.Json" Version="12.0.1" />
     <PackageReference Include="Plugin.Permissions" Version="3.0.0.12" />
     <PackageReference Include="SuaveControls.FloatingActionButton" Version="2018.1.5" />
+    <PackageReference Include="Xam.Plugin.Media" Version="4.0.1.5" />
     <PackageReference Include="Xam.Plugins.Notifier" Version="3.0.1" />
     <PackageReference Include="Xamarin.Essentials" Version="1.0.0" />
     <PackageReference Include="Xamarin.Forms" Version="3.4.0.1008975" />
@@ -31,6 +32,9 @@
     <Compile Update="Views\ParksListModal.xaml.cs">
       <DependentUpon>ParksListModal.xaml</DependentUpon>
     </Compile>
+    <Compile Update="Views\AddParkTypesModal.xaml.cs">
+      <DependentUpon>AddParkTypesModal.xaml</DependentUpon>
+    </Compile>
   </ItemGroup>
 
   <ItemGroup>
@@ -38,6 +42,9 @@
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Views\AddParkingSpotPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\AddParkTimesModal.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Views\MapPage.xaml">

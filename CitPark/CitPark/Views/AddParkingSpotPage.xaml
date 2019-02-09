@@ -4,7 +4,7 @@
              xmlns:maps="clr-namespace:Xamarin.Forms.GoogleMaps;assembly=Xamarin.Forms.GoogleMaps"
              x:Class="CitPark.Views.AddParkingSpotPage">
     <ContentPage.Content>
-        <ScrollView>
+        <ScrollView InputTransparent="True">
             <Grid Padding="10,10,10,10">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto" />
@@ -26,9 +26,11 @@
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*" />
                         <ColumnDefinition Width="auto" />
+                        <ColumnDefinition Width="auto" />
                     </Grid.ColumnDefinitions>
-                    <Image x:Name="ParkImage" Grid.RowSpan="2" Grid.ColumnSpan="2" Source="addphoto.png" Aspect="AspectFill" HeightRequest="200" />
-                    <Button x:Name="AddParkImage" Grid.Row="1" Grid.Column="1" Text="+" Clicked="AddParkImage_Clicked" />
+                    <Image x:Name="ParkImage" Grid.RowSpan="2" Grid.ColumnSpan="3" Source="addphoto.png" Aspect="AspectFill" HeightRequest="200" />
+                    <Button x:Name="AddParkImage" Grid.Row="1" Grid.Column="1" Text="Choose image" Clicked="AddParkImage_Clicked" />
+                    <Button x:Name="TakeParkImage" Grid.Row="1" Grid.Column="2" Text="Take photo" Clicked="TakeParkImage_Clicked" />
                 </Grid>
                 <Grid Grid.Row="1">
                     <Grid.ColumnDefinitions>
@@ -60,7 +62,7 @@
                         <ColumnDefinition Width="*" />
                     </Grid.ColumnDefinitions>
                     <Label Text="Floor number:" Grid.Column="0" />
-                    <Picker x:Name="FloorPicker" Grid.Column="1" />
+                    <Entry x:Name="FloorPicker" Keyboard="Numeric" Grid.Column="1" />
                 </Grid>
                 <Grid Grid.Row="5">
                     <Grid.ColumnDefinitions>
@@ -70,23 +72,17 @@
                     <Label Text="Paid:" Grid.Column="0" />
                     <Switch x:Name="PaidSwitch" Grid.Column="1" />
                 </Grid>
-                <Grid Grid.Row="6">
+                <Grid Grid.Row="7">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*" />
                         <ColumnDefinition Width="*" />
                     </Grid.ColumnDefinitions>
-                    <Label Text="Number of spots:" Grid.Column="0" />
-                    <Button x:Name="SpotsButton" Text="Select spots" Clicked="SpotsButton_Clicked" Grid.Column="1" />
+                    <Label Text="Times:" Grid.Column="0" />
+                    <Button x:Name="TimesButton" Text="Select times" Clicked="TimesButton_Clicked" Grid.Column="1" />
                 </Grid>
-                <Button x:Name="CenterMapButton" Text="Center map on current position" Clicked="CenterMapButton_Clicked" Grid.Row="7" />
-                <maps:Map x:Name="PositionMap" Grid.Row="8" HeightRequest="200" />
+                <maps:Map x:Name="PositionMap" Grid.Row="8" HeightRequest="200" CameraChanged="PositionMap_CameraChanged" />
                 <Grid Grid.Row="9">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="*" />
-                        <ColumnDefinition Width="*" />
-                    </Grid.ColumnDefinitions>
-                    <Button x:Name="CancelButton" Text="Cancel" Clicked="CancelButton_Clicked" Grid.Column="0" />
-                    <Button x:Name="ConfirmButton" Text="Confirm" Clicked="ConfirmButton_Clicked" Grid.Column="1" />
+                    <Button x:Name="ConfirmButton" Text="Confirm" Clicked="ConfirmButton_Clicked" />
                 </Grid>
             </Grid>
         </ScrollView>

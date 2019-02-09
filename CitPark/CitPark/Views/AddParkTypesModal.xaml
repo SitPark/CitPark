@@ -1,0 +1,38 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="CitPark.AddParkTypesModal">
+    <ContentPage.Content>
+        <StackLayout VerticalOptions="Center" Padding="10,10,10,10">
+            <Label Text="Select park type" HorizontalOptions="Center" FontSize="Large" />
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
+                <Label Text="Number of Handicap spots" Grid.Column="0" Grid.Row="0" />
+                <Label Text="Number of Family spots" Grid.Column="0" Grid.Row="1" />
+                <Label Text="Number of Eletric spots" Grid.Column="0" Grid.Row="2" />
+                <Label Text="Number of Bike spots" Grid.Column="0" Grid.Row="3" />
+                <Entry x:Name="HandicapSpotsNumber" Keyboard="Numeric" Placeholder="Number of parks" Grid.Column="1" />
+                <Entry x:Name="FamilySpotsNumber" Keyboard="Numeric" Placeholder="Number of parks" Grid.Column="1" Grid.Row="1" />
+                <Entry x:Name="EletricSpotsNumber" Keyboard="Numeric" Placeholder="Number of parks" Grid.Column="1" Grid.Row="2" />
+                <Entry x:Name="BikeSpotsNumber" Keyboard="Numeric" Placeholder="Number of parks" Grid.Column="1" Grid.Row="3" />
+            </Grid>
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <Button x:Name="Cancel" Text="Cancel" Clicked="Cancel_Clicked"  Grid.Column="0" />
+                <Button x:Name="Save" Text="Save" Clicked="Save_Clicked" Grid.Column="1" />
+            </Grid>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

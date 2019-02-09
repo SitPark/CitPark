@@ -1,0 +1,67 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="CitPark.Views.AddParkTimesModal">
+    <ContentPage.Content>
+        <StackLayout VerticalOptions="Center" Padding="10,10,10,10">
+            <Label Text="Select park times" HorizontalOptions="Center" FontSize="Large" />
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
+                <Label Text="All day" FontSize="Small" Grid.Column="1" />
+                <Label Text="Opening time" FontSize="Small" Grid.Column="2" />
+                <Label Text="Closing time" FontSize="Small" Grid.Column="3" />
+                <Label Text="Monday" Grid.Column="0" Grid.Row="1" />
+                <Label Text="Tuesday" Grid.Column="0" Grid.Row="2" />
+                <Label Text="Wednesday" Grid.Column="0" Grid.Row="3" />
+                <Label Text="Thursday" Grid.Column="0" Grid.Row="4" />
+                <Label Text="Friday" Grid.Column="0" Grid.Row="5" />
+                <Label Text="Saturday" Grid.Column="0" Grid.Row="6" />
+                <Label Text="Sunday" Grid.Column="0" Grid.Row="7" />
+                <Switch x:Name="MondayAllDay" Grid.Column="1" Grid.Row="1" IsToggled="False" Toggled="MondayAllDay_Toggled" />
+                <Switch x:Name="TuesdayAllDay" Grid.Column="1" Grid.Row="2" IsToggled="False" Toggled="TuesdayAllDay_Toggled" />
+                <Switch x:Name="WednesdayAllDay" Grid.Column="1" Grid.Row="3" IsToggled="False" Toggled="WednesdayAllDay_Toggled" />
+                <Switch x:Name="ThursdayAllDay" Grid.Column="1" Grid.Row="4" IsToggled="False" Toggled="ThursdayAllDay_Toggled" />
+                <Switch x:Name="FridayAllDay" Grid.Column="1" Grid.Row="5" IsToggled="False" Toggled="FridayAllDay_Toggled" />
+                <Switch x:Name="SaturdayAllDay" Grid.Column="1" Grid.Row="6" IsToggled="False" Toggled="SaturdayAllDay_Toggled" />
+                <Switch x:Name="SundayAllDay" Grid.Column="1" Grid.Row="7" IsToggled="False" Toggled="SundayAllDay_Toggled" />
+                <TimePicker x:Name="MondayOpenTimePicker" Grid.Column="2" Grid.Row="1" />
+                <TimePicker x:Name="TuesdayOpenTimePicker" Grid.Column="2" Grid.Row="2" />
+                <TimePicker x:Name="WednesdayOpenTimePicker" Grid.Column="2" Grid.Row="3" />
+                <TimePicker x:Name="ThursdayOpenTimePicker" Grid.Column="2" Grid.Row="4" />
+                <TimePicker x:Name="FridayOpenTimePicker" Grid.Column="2" Grid.Row="5" />
+                <TimePicker x:Name="SaturdayOpenTimePicker" Grid.Column="2" Grid.Row="6" />
+                <TimePicker x:Name="SundayOpenTimePicker" Grid.Column="2" Grid.Row="7" />
+                <TimePicker x:Name="MondayCloseTimePicker" Grid.Column="3" Grid.Row="1" />
+                <TimePicker x:Name="TuesdayCloseTimePicker" Grid.Column="3" Grid.Row="2" />
+                <TimePicker x:Name="WednesdayCloseTimePicker" Grid.Column="3" Grid.Row="3" />
+                <TimePicker x:Name="ThursdayCloseTimePicker" Grid.Column="3" Grid.Row="4" />
+                <TimePicker x:Name="FridayCloseTimePicker" Grid.Column="3" Grid.Row="5" />
+                <TimePicker x:Name="SaturdayCloseTimePicker" Grid.Column="3" Grid.Row="6" />
+                <TimePicker x:Name="SundayCloseTimePicker" Grid.Column="3" Grid.Row="7" />
+            </Grid>
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <Button x:Name="Cancel" Text="Cancel" Clicked="Cancel_Clicked"  Grid.Column="0" />
+                <Button x:Name="Save" Text="Save" Clicked="Save_Clicked" Grid.Column="1" />
+            </Grid>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

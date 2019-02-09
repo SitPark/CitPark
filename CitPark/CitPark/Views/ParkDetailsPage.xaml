@@ -33,7 +33,7 @@
                     <ColumnDefinition Width="*" />
                     <ColumnDefinition Width="auto" />
                 </Grid.ColumnDefinitions>
-                <Button x:Name="DirectionsButton" Text="Directions" Clicked="DirectionsButton_Clicked" FontSize="Large" />
+                <Button x:Name="DirectionsButton" BackgroundColor="Blue" TextColor="White" Text="Directions" Clicked="DirectionsButton_Clicked" FontSize="Large" />
                 <Button x:Name="ReportButton" Text="Report" Grid.Column="1" Clicked="ReportButton_Clicked" FontSize="Large" />
             </Grid>
         </Grid>

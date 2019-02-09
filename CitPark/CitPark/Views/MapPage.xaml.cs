@@ -28,6 +28,8 @@ namespace CitPark
 	{
         private int AdOffset = 50;
 
+        private bool FirstTimeLoaded = true;
+
 		public MapPage ()
 		{
 			InitializeComponent ();
@@ -44,43 +46,48 @@ namespace CitPark
         // This method is called when the page finishes loading
         protected override async void OnAppearing()
         {
-            // We'll ask for location permission if it's not given
-            var status = await CrossPermissions.Current.CheckPermissionStatusAsync(Permission.Location);
-            if(status != PermissionStatus.Granted)
+            if (FirstTimeLoaded)
             {
-                var results = await CrossPermissions.Current.RequestPermissionsAsync(Permission.Location);
+                // We'll ask for location permission if it's not given
+                var status = await CrossPermissions.Current.CheckPermissionStatusAsync(Permission.Location);
+                if (status != PermissionStatus.Granted)
+                {
+                    var results = await CrossPermissions.Current.RequestPermissionsAsync(Permission.Location);
 
-                // Permission has been given
-                if (results.ContainsKey(Permission.Location))
+                    // Permission has been given
+                    if (results.ContainsKey(Permission.Location))
+                    {
+                        Settings.GeolocationPermissionGranted = true;
+
+                        status = results[Permission.Location];
+
+                        SpotsMap.MyLocationEnabled = true;
+                        SpotsMap.UiSettings.MyLocationButtonEnabled = true;
+                    }
+                    else
+                    {
+                        Settings.GeolocationPermissionGranted = false;
+
+                        SpotsMap.MyLocationEnabled = false;
+                        SpotsMap.UiSettings.MyLocationButtonEnabled = false;
+                    }
+                }
+                else
                 {
                     Settings.GeolocationPermissionGranted = true;
-
-                    status = results[Permission.Location];
 
                     SpotsMap.MyLocationEnabled = true;
                     SpotsMap.UiSettings.MyLocationButtonEnabled = true;
                 }
-                else
-                {
-                    Settings.GeolocationPermissionGranted = false;
 
-                    SpotsMap.MyLocationEnabled = false;
-                    SpotsMap.UiSettings.MyLocationButtonEnabled = false;
-                }
+                var location = GetLastKnownDeviceLocation().Result;
+
+                MoveMap(location);
+
+                await RefreshMap(location);
+
+                FirstTimeLoaded = false;
             }
-            else
-            {
-                Settings.GeolocationPermissionGranted = true;
-
-                SpotsMap.MyLocationEnabled = true;
-                SpotsMap.UiSettings.MyLocationButtonEnabled = true;
-            }
-
-            var location = GetLastKnownDeviceLocation().Result;
-
-            MoveMap(location);
-
-            await RefreshMap(location);
         }
 
         public async Task RefreshMap(Location location)
