@@ -4,6 +4,7 @@ using Plugin.Media;
 using Plugin.Media.Abstractions;
 using Plugin.Permissions;
 using Plugin.Permissions.Abstractions;
+using Plugin.Toast;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -131,11 +132,45 @@ namespace CitPark.Views
 
         private async void ConfirmButton_Clicked(object sender, EventArgs e)
         {
-            await InsertImage();
+            CrossToastPopUp.Current.ShowToastMessage("Creating parking spot, please wait...");
+
+            int parkId = await InsertPark();
+
+            if(parkId > 0)
+            {
+                if(await InsertImage(parkId))
+                {
+                    if(await InsertParkSpot(parkId))
+                    {
+                        if(await InsertParkTime(parkId))
+                        {
+                            CrossToastPopUp.Current.ShowToastSuccess("Parking spot created successfully!");
+                            await Navigation.PopAsync();
+                        }
+                        else
+                        {
+                            CrossToastPopUp.Current.ShowToastError("Error creating parking spot.");
+                        }
+                    }
+                    else
+                    {
+                        CrossToastPopUp.Current.ShowToastError("Error creating parking spot.");
+                    }
+                }
+                else
+                {
+                    CrossToastPopUp.Current.ShowToastError("Error creating parking spot.");
+                }
+            }
+            else
+            {
+                CrossToastPopUp.Current.ShowToastError("Error creating parking spot.");
+            }
         }
 
-        private async Task InsertImage()
+        private async Task<bool> InsertImage(int parkId)
         {
+            // Upload the image to the server.
             var content = new MultipartFormDataContent();
             content.Add(new StreamContent(ParkImageToUpload.GetStream()), "\"file\"", $"\"{ParkImageToUpload.Path}\"");
 
@@ -144,15 +179,11 @@ namespace CitPark.Views
             var responseMsg = await httpClient.PostAsync(url, content);
 
             var remotePath = await responseMsg.Content.ReadAsStringAsync();
-        }
 
-        private async Task GetParksByLocation(Xamarin.Essentials.Location location)
-        {
-            var request = HttpWebRequest.Create("http://citpark.tech/api/park/read_by_location.php?latitude=" + location.Latitude.ToString() + "&longitude=" + location.Longitude.ToString() + "&radius=" + Settings.SearchRadius * 1000 + "&categories=" + Settings.ParkTypes);
+            // Add the uploaded image to the database.
+            var request = HttpWebRequest.Create("http://citpark.tech/api/park_image/create.php?park_id=" + parkId + "&image_file=" + Path.GetFileName(ParkImageToUpload.Path));
             request.ContentType = "application/json";
             request.Method = "GET";
-
-            StoredData.ParkingSpotPreviews = new ObservableCollection<ParkingSpotPreview>();
 
             try
             {
@@ -160,7 +191,51 @@ namespace CitPark.Views
                 {
                     // Check if server has returned success status code.
                     if (response.StatusCode != HttpStatusCode.OK)
-                        Console.Out.WriteLine("Error fetching data. Server returnesd status code: {0}", response.StatusCode);
+                        Console.Out.WriteLine("Error fetching data. Server returned status code: {0}", response.StatusCode);
+
+                    using (StreamReader reader = new StreamReader(response.GetResponseStream()))
+                    {
+                        var imageId = reader.ReadToEnd();
+
+                        if (string.IsNullOrWhiteSpace(imageId))
+                        {
+                            Console.Out.WriteLine("Response contained empty body...");
+
+                            return false;
+                        }
+                        else
+                        {
+                            if (Int32.Parse(imageId) > 0)
+                            {
+                                return true;
+                            }
+
+                            return false;
+                        }
+                    }
+                }
+            }
+            catch(Exception ex)
+            {
+                Console.Out.WriteLine("Error connecting to server. " + ex.Message);
+
+                return false;
+            }
+        }
+
+        private async Task<int> InsertPark()
+        {
+            var request = HttpWebRequest.Create("http://citpark.tech/api/park/create.php?name=" + ParkNameEntry.Text + "&latitude=" + PositionMap.CameraPosition.Target.Latitude + "&longitude=" + PositionMap.CameraPosition.Target.Longitude + "&paid=" + PaidSwitch.IsToggled + "&underground=" + UndergroundSwitch.IsToggled + "&floor=" + FloorPicker.Text);
+            request.ContentType = "application/json";
+            request.Method = "GET";
+
+            try
+            {
+                using (HttpWebResponse response = await request.GetResponseAsync() as HttpWebResponse)
+                {
+                    // Check if server has returned success status code.
+                    if (response.StatusCode != HttpStatusCode.OK)
+                        Console.Out.WriteLine("Error fetching data. Server returned status code: {0}", response.StatusCode);
 
                     using (StreamReader reader = new StreamReader(response.GetResponseStream()))
                     {
@@ -169,17 +244,12 @@ namespace CitPark.Views
                         if (string.IsNullOrWhiteSpace(content))
                         {
                             Console.Out.WriteLine("Response contained empty body...");
+
+                            return -1;
                         }
                         else
                         {
-                            ParkingSpotPreview[] parkingSpotPreviews = JsonConvert.DeserializeObject<ParkingSpotPreview[]>(content);
-
-                            foreach (ParkingSpotPreview parkingSpotPreview in parkingSpotPreviews)
-                            {
-                                StoredData.ParkingSpotPreviews.Add(parkingSpotPreview);
-                            }
-
-                            Console.Out.WriteLine("Response Body: \r\n {0}", content);
+                            return Int32.Parse(content);
                         }
                     }
                 }
@@ -187,7 +257,92 @@ namespace CitPark.Views
             catch (WebException ex)
             {
                 Console.Out.WriteLine("Error connecting to server. " + ex.Message);
+
+                return -1;
             }
+        }
+
+        private async Task<bool> InsertParkSpot(int parkId)
+        {
+            foreach(KeyValuePair<ParkTypesEnum, int> ParkTypes in ParkTypesSpots)
+            {
+                if (ParkTypes.Value > 0)
+                {
+                    var request = HttpWebRequest.Create("http://citpark.tech/api/park_spot/create.php?park_id=" + parkId + "&category_id=" + (int)ParkTypes.Key + "&num_spots=" + ParkTypes.Value);
+                    request.ContentType = "application/json";
+                    request.Method = "GET";
+
+                    try
+                    {
+                        using (HttpWebResponse response = await request.GetResponseAsync() as HttpWebResponse)
+                        {
+                            // Check if server has returned success status code.
+                            if (response.StatusCode != HttpStatusCode.OK)
+                                Console.Out.WriteLine("Error fetching data. Server returned status code: {0}", response.StatusCode);
+
+                            using (StreamReader reader = new StreamReader(response.GetResponseStream()))
+                            {
+                                var content = reader.ReadToEnd();
+
+                                if (string.IsNullOrWhiteSpace(content))
+                                {
+                                    Console.Out.WriteLine("Response contained empty body...");
+
+                                    return false;
+                                }
+                            }
+                        }
+                    }
+                    catch (WebException ex)
+                    {
+                        Console.Out.WriteLine("Error connecting to server. " + ex.Message);
+
+                        return false;
+                    }
+                }
+            }
+
+            return true;
+        }
+
+        private async Task<bool> InsertParkTime(int parkId)
+        {
+            foreach (KeyValuePair<WeekDay, ParkTime> DaysOfWeek in ParkingSpotPreview.Details.ParkTimes.ParkingTimes)
+            {
+                var request = HttpWebRequest.Create("http://citpark.tech/api/park_time/create.php?park_id=" + parkId + "&weekday=" + DaysOfWeek.Key + "&open_time=" + DaysOfWeek.Value.TimeOpen + "&close_time=" + DaysOfWeek.Value.TimeClose + "&always_open=" + DaysOfWeek.Value.AlwaysOpen);
+                request.ContentType = "application/json";
+                request.Method = "GET";
+
+                try
+                {
+                    using (HttpWebResponse response = await request.GetResponseAsync() as HttpWebResponse)
+                    {
+                        // Check if server has returned success status code.
+                        if (response.StatusCode != HttpStatusCode.OK)
+                            Console.Out.WriteLine("Error fetching data. Server returned status code: {0}", response.StatusCode);
+
+                        using (StreamReader reader = new StreamReader(response.GetResponseStream()))
+                        {
+                            var content = reader.ReadToEnd();
+
+                            if (string.IsNullOrWhiteSpace(content))
+                            {
+                                Console.Out.WriteLine("Response contained empty body...");
+
+                                return false;
+                            }
+                        }
+                    }
+                }
+                catch (WebException ex)
+                {
+                    Console.Out.WriteLine("Error connecting to server. " + ex.Message);
+
+                    return false;
+                }
+            }
+
+            return true;
         }
 
         private async void AddParkImage_Clicked(object sender, EventArgs e)

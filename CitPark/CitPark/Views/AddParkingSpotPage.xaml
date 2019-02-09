@@ -38,15 +38,15 @@
                         <ColumnDefinition Width="*" />
                     </Grid.ColumnDefinitions>
                     <Label Text="Park name:" Grid.Column="0" />
-                    <Entry Placeholder="Park name" Grid.Column="1" />
+                    <Entry x:Name="ParkNameEntry" Placeholder="Park name" Grid.Column="1" />
                 </Grid>
                 <Grid Grid.Row="2">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*" />
                         <ColumnDefinition Width="*" />
                     </Grid.ColumnDefinitions>
-                    <Label Text="Park type:" Grid.Column="0" />
-                    <Button x:Name="ParkTypeButton" Text="Select park type" Clicked="ParkTypeButton_Clicked" Grid.Column="1" />
+                    <Label Text="Park spots:" Grid.Column="0" />
+                    <Button x:Name="ParkTypeButton" Text="Select park spots" Clicked="ParkTypeButton_Clicked" Grid.Column="1" />
                 </Grid>
                 <Grid Grid.Row="3">
                     <Grid.ColumnDefinitions>
