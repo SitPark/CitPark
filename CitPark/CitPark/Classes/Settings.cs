@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using Xamarin.Essentials;
+using Xamarin.Forms.GoogleMaps;
 
 namespace CitPark
 {
@@ -137,6 +138,18 @@ namespace CitPark
             set
             {
                 Preferences.Set("car_position_longitude", value);
+            }
+        }
+
+        public static MapType MapsType
+        {
+            get
+            {
+                return (MapType)Preferences.Get("maps_type", 0);
+            }
+            set
+            {
+                Preferences.Set("maps_type", (int)value);
             }
         }
 

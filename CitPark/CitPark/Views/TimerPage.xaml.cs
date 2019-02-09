@@ -36,6 +36,8 @@ namespace CitPark.Views
         // This method is called when the page finishes loading
         protected override async void OnAppearing()
         {
+            PositionMap.MapType = Settings.MapsType;
+
             // We'll ask for location permission if it's not given
             var status = await CrossPermissions.Current.CheckPermissionStatusAsync(Permission.Location);
             if (status != PermissionStatus.Granted)

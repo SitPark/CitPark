@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Xamarin.Essentials;
 using Xamarin.Forms;
+using Xamarin.Forms.GoogleMaps;
 using Xamarin.Forms.Xaml;
 
 namespace CitPark
@@ -14,18 +15,24 @@ namespace CitPark
 	{
         // Convert enumerator to list
         List<DistanceUnits> distanceUnits = Enum.GetValues(typeof(DistanceUnits)).Cast<DistanceUnits>().ToList();
+        List<MapType> mapTypes = Enum.GetValues(typeof(MapType)).Cast<MapType>().ToList();
 
 		public SettingsPage ()
 		{
+            // Remove the last element from the map types list.
+            mapTypes.RemoveAt(mapTypes.Count - 1);
+
 			InitializeComponent ();
 
             // Assign the distance units list to the picker
             DistanceUnitPicker.ItemsSource = distanceUnits;
+            MapTypePicker.ItemsSource = mapTypes;
 
             DarkModeSwitch.IsToggled = Settings.DarkMode;
             TimerNotificationSwitch.IsToggled = Settings.TimerNotification;
             TimerUpDown.Value = Settings.DefaultTimer;
             DistanceUnitPicker.SelectedItem = Settings.SelectedDistanceUnit;
+            MapTypePicker.SelectedItem = Settings.MapsType;
             RadiusUpDown.Value = Settings.SearchRadius;
         }
 
@@ -93,6 +100,11 @@ namespace CitPark
         {
             var parkTypesPage = new ParkTypesModal();
             await Navigation.PushModalAsync(parkTypesPage);
+        }
+
+        private void MapTypePicker_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            Settings.MapsType = (MapType)MapTypePicker.SelectedItem;
         }
     }
 }

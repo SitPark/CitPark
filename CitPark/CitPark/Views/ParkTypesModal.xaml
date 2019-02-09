@@ -4,7 +4,7 @@
              x:Class="CitPark.ParkTypesModal">
     <ContentPage.Content>
         <StackLayout VerticalOptions="Center" Padding="10,10,10,10">
-            <Label Text="Select park type" HorizontalOptions="Center" FontSize="Large" />
+            <Label Text="Select park spots" HorizontalOptions="Center" FontSize="Large" />
             <Grid>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto" />

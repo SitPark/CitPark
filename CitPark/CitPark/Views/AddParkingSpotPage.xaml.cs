@@ -51,6 +51,8 @@ namespace CitPark.Views
 
         protected override async void OnAppearing()
         {
+            PositionMap.MapType = Settings.MapsType;
+
             if (FirstTimeLoad)
             {
                 // We'll ask for location permission if it's not given

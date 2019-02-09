@@ -3,39 +3,41 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="CitPark.Views.ParkDetailsPage">
     <ContentPage.Content>
-        <Grid>
-            <Grid.RowDefinitions>
-                <RowDefinition Height="auto" />
-                <RowDefinition Height="auto" />
-                <RowDefinition Height="auto" />
-                <RowDefinition Height="auto" />
-                <RowDefinition Height="auto" />
-                <RowDefinition Height="auto" />
-                <RowDefinition Height="auto" />
-                <RowDefinition Height="auto" />
-                <RowDefinition Height="auto" />
-                <RowDefinition Height="auto" />
-                <RowDefinition Height="auto" />
-                <RowDefinition Height="*" />
-            </Grid.RowDefinitions>
-            <Image x:Name="ParkImage" Aspect="AspectFill" />
-            <Label x:Name="ParkName" Grid.Row="1" FontSize="Large" FontAttributes="Bold" />
-            <Label x:Name="ParkType" Grid.Row="2" FontSize="Large" />
-            <Label x:Name="ParkUnderground" Grid.Row="3" FontSize="Large" />
-            <Label x:Name="ParkFloor" Grid.Row="4" FontSize="Large" />
-            <Label x:Name="ParkPaid" Grid.Row="5" FontSize="Large" />
-            <Label x:Name="ParkSpotsHandicap" Grid.Row="6" IsEnabled="False" FontSize="Large" />
-            <Label x:Name="ParkSpotsFamily" Grid.Row="7" IsEnabled="False" FontSize="Large" />
-            <Label x:Name="ParkSpotsEletric" Grid.Row="8" IsEnabled="False" FontSize="Large" />
-            <Label x:Name="ParkSpotsBike" Grid.Row="9" IsEnabled="False" FontSize="Large" />
-            <Grid Grid.Row="10">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*" />
-                    <ColumnDefinition Width="auto" />
-                </Grid.ColumnDefinitions>
-                <Button x:Name="DirectionsButton" BackgroundColor="Blue" TextColor="White" Text="Directions" Clicked="DirectionsButton_Clicked" FontSize="Large" />
-                <Button x:Name="ReportButton" Text="Report" Grid.Column="1" Clicked="ReportButton_Clicked" FontSize="Large" />
+        <ScrollView Padding="10,10,10,10">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto" />
+                    <RowDefinition Height="auto" />
+                    <RowDefinition Height="auto" />
+                    <RowDefinition Height="auto" />
+                    <RowDefinition Height="auto" />
+                    <RowDefinition Height="auto" />
+                    <RowDefinition Height="auto" />
+                    <RowDefinition Height="auto" />
+                    <RowDefinition Height="auto" />
+                    <RowDefinition Height="auto" />
+                    <RowDefinition Height="auto" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+                <Image x:Name="ParkImage" Aspect="AspectFill" HeightRequest="200" />
+                <Label x:Name="ParkName" Grid.Row="1" FontSize="Large" FontAttributes="Bold" />
+                <Label x:Name="ParkType" Grid.Row="2" FontSize="Large" />
+                <Label x:Name="ParkUnderground" Grid.Row="3" FontSize="Large" />
+                <Label x:Name="ParkFloor" Grid.Row="4" FontSize="Large" />
+                <Label x:Name="ParkPaid" Grid.Row="5" FontSize="Large" />
+                <Label x:Name="ParkSpotsHandicap" Grid.Row="6" IsEnabled="False" FontSize="Large" />
+                <Label x:Name="ParkSpotsFamily" Grid.Row="7" IsEnabled="False" FontSize="Large" />
+                <Label x:Name="ParkSpotsEletric" Grid.Row="8" IsEnabled="False" FontSize="Large" />
+                <Label x:Name="ParkSpotsBike" Grid.Row="9" IsEnabled="False" FontSize="Large" />
+                <Grid Grid.Row="10">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="auto" />
+                    </Grid.ColumnDefinitions>
+                    <Button x:Name="DirectionsButton" BackgroundColor="Blue" TextColor="White" Text="Directions" Clicked="DirectionsButton_Clicked" FontSize="Large" />
+                    <Button x:Name="ReportButton" Text="Report" Grid.Column="1" Clicked="ReportButton_Clicked" FontSize="Large" />
+                </Grid>
             </Grid>
-        </Grid>
+        </ScrollView>
     </ContentPage.Content>
 </ContentPage>

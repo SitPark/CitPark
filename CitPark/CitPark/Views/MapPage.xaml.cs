@@ -46,6 +46,8 @@ namespace CitPark
         // This method is called when the page finishes loading
         protected override async void OnAppearing()
         {
+            SpotsMap.MapType = Settings.MapsType;
+
             if (FirstTimeLoaded)
             {
                 // We'll ask for location permission if it's not given
