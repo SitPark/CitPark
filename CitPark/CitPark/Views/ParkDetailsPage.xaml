@@ -17,6 +17,7 @@
                     <RowDefinition Height="auto" />
                     <RowDefinition Height="auto" />
                     <RowDefinition Height="auto" />
+                    <RowDefinition Height="auto" />
                     <RowDefinition Height="*" />
                 </Grid.RowDefinitions>
                 <Image x:Name="ParkImage" Aspect="AspectFill" HeightRequest="200" />
@@ -25,11 +26,12 @@
                 <Label x:Name="ParkUnderground" Grid.Row="3" FontSize="Large" />
                 <Label x:Name="ParkFloor" Grid.Row="4" FontSize="Large" />
                 <Label x:Name="ParkPaid" Grid.Row="5" FontSize="Large" />
-                <Label x:Name="ParkSpotsHandicap" Grid.Row="6" IsEnabled="False" FontSize="Large" />
-                <Label x:Name="ParkSpotsFamily" Grid.Row="7" IsEnabled="False" FontSize="Large" />
-                <Label x:Name="ParkSpotsEletric" Grid.Row="8" IsEnabled="False" FontSize="Large" />
-                <Label x:Name="ParkSpotsBike" Grid.Row="9" IsEnabled="False" FontSize="Large" />
-                <Grid Grid.Row="10">
+                <Label x:Name="ParkSpotsHandicap" Grid.Row="6" IsVisible="False" FontSize="Large" />
+                <Label x:Name="ParkSpotsFamily" Grid.Row="7" IsVisible="False" FontSize="Large" />
+                <Label x:Name="ParkSpotsEletric" Grid.Row="8" IsVisible="False" FontSize="Large" />
+                <Label x:Name="ParkSpotsBike" Grid.Row="9" IsVisible="False" FontSize="Large" />
+                <Label x:Name="OpenStatusLabel" Grid.Row="10" FontSize="Large" />
+                <Grid Grid.Row="11">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*" />
                         <ColumnDefinition Width="auto" />

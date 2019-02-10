@@ -323,7 +323,7 @@ namespace CitPark.Views
         {
             foreach (KeyValuePair<WeekDay, ParkTime> DaysOfWeek in ParkingSpotPreview.Details.ParkTimes.ParkingTimes)
             {
-                var request = HttpWebRequest.Create("http://citpark.tech/api/park_time/create.php?park_id=" + parkId + "&weekday=" + DaysOfWeek.Key + "&open_time=" + DaysOfWeek.Value.TimeOpen + "&close_time=" + DaysOfWeek.Value.TimeClose + "&always_open=" + DaysOfWeek.Value.AlwaysOpen);
+                var request = HttpWebRequest.Create("http://citpark.tech/api/park_time/create.php?park_id=" + parkId + "&weekday=" + (int)DaysOfWeek.Key + "&open_time=" + DaysOfWeek.Value.TimeOpen + "&close_time=" + DaysOfWeek.Value.TimeClose + "&always_open=" + DaysOfWeek.Value.AlwaysOpen);
                 request.ContentType = "application/json";
                 request.Method = "GET";
 

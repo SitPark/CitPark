@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -17,9 +18,13 @@ namespace CitPark.Classes
 
     public class ParkTime
     {
+        [JsonProperty("weekday")]
         public WeekDay WeekDay { get; set; }
+        [JsonProperty("always_open")]
         public bool AlwaysOpen { get; set; }
+        [JsonProperty("open_time")]
         public TimeSpan TimeOpen { get; set; }
+        [JsonProperty("close_time")]
         public TimeSpan TimeClose { get; set; }
 
         /// <summary>
