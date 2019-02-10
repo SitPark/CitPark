@@ -99,15 +99,18 @@ namespace CitPark.Views
 
                 if (currentDayParkTime.AlwaysOpen)
                 {
-                    OpenStatusLabel.Text = "Currently open all day";
+                    OpenStatusLabel.Text = "Open all day";
                 }
-                else
+                // Check wether the park close hour is after todays open hour.
+                else if(currentDayParkTime.TimeClose > currentDayParkTime.TimeOpen)
                 {
+                    // Check wether the park is currently open.
                     if (currentTime > currentDayParkTime.TimeOpen && currentTime < currentDayParkTime.TimeClose)
                     {
-                        OpenStatusLabel.Text = string.Format("Currently open until {0:hh\\:mm}", currentDayParkTime.TimeClose);
+                        OpenStatusLabel.Text = string.Format("Open until {0:hh\\:mm}", currentDayParkTime.TimeClose);
                     }
-                    else if (currentTime > currentDayParkTime.TimeClose && currentTime > currentDayParkTime.TimeOpen)
+                    // Check wether the park has already closed.
+                    else if (currentTime > currentDayParkTime.TimeClose)
                     {
                         // Check if tomorrow will be open all day.
                         WeekDay tomorrow = currentDay + 1;
@@ -128,7 +131,26 @@ namespace CitPark.Views
                             OpenStatusLabel.Text = string.Format("Closed. Will open tomorrow at {0:hh\\:mm}", tomorrowDayParkTime.TimeOpen);
                         }
                     }
-                    // Check if it's before today's open hour.
+                    // The park hasn't opened yet today.
+                    else
+                    {
+                        OpenStatusLabel.Text = string.Format("Closed. Will open today at {0:hh\\:mm}", currentDayParkTime.TimeOpen);
+                    }
+                }
+                // The close hour is before the open hour.
+                else
+                {
+                    // Check wether the park is currently after it's open hour.
+                    if(currentTime > currentDayParkTime.TimeOpen)
+                    {
+                        OpenStatusLabel.Text = "Open for the rest of the day.";
+                    }
+                    // Check wether the park is currently before it's close hour.
+                    else if(currentTime < currentDayParkTime.TimeClose)
+                    {
+                        OpenStatusLabel.Text = string.Format("Open until {0:hh\\:mm}", currentDayParkTime.TimeClose);
+                    }
+                    // The park has already closed but will open later today.
                     else
                     {
                         OpenStatusLabel.Text = string.Format("Closed. Will open today at {0:hh\\:mm}", currentDayParkTime.TimeOpen);
