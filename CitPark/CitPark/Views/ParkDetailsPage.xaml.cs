@@ -37,11 +37,23 @@ namespace CitPark.Views
 
                 ParkTypesEnum parkTypesEnum = ParkTypesEnum.None;
 
-                foreach (ParkSpot parkSpot in parkSpots)
+                if(ParkingSpotPreview.Details.ParkSpots.Count > 0)
                 {
-                    parkTypesEnum |= (ParkTypesEnum)parkSpot.CategoryId;
-                    ParkingSpotPreview.Details.ParkSpots.Add((ParkTypesEnum)parkSpot.CategoryId, parkSpot.NumSpots);
+                    foreach (ParkSpot parkSpot in parkSpots)
+                    {
+                        parkTypesEnum |= (ParkTypesEnum)parkSpot.CategoryId;
+                    }
                 }
+                else
+                {
+                    foreach (ParkSpot parkSpot in parkSpots)
+                    {
+                        parkTypesEnum |= (ParkTypesEnum)parkSpot.CategoryId;
+                        ParkingSpotPreview.Details.ParkSpots.Add((ParkTypesEnum)parkSpot.CategoryId, parkSpot.NumSpots);
+                    }
+                }
+
+                
 
                 ParkingSpotPreview.ParkTypes = (int)parkTypesEnum;
                 ParkingSpotPreview.Details.Image = await GetParkingSpotImage(ParkingSpotPreview.Id);
