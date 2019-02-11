@@ -180,8 +180,6 @@ namespace CitPark
             request.ContentType = "application/json";
             request.Method = "GET";
 
-            StoredData.ParkingSpotPreviews = new ObservableCollection<ParkingSpotPreview>();
-
             try
             {
                 using (HttpWebResponse response = await request.GetResponseAsync() as HttpWebResponse)
@@ -201,6 +199,8 @@ namespace CitPark
                         else
                         {
                             ParkingSpotPreview[] parkingSpotPreviews = JsonConvert.DeserializeObject<ParkingSpotPreview[]>(content);
+
+                            StoredData.ParkingSpotPreviews = new ObservableCollection<ParkingSpotPreview>();
 
                             foreach (ParkingSpotPreview parkingSpotPreview in parkingSpotPreviews)
                             {
