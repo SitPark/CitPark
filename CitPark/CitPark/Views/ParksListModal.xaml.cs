@@ -1,10 +1,12 @@
 ﻿using Acr.UserDialogs;
 using CitPark.Classes;
 using CitPark.Views;
+using MonkeyCache.FileStore;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Net;
@@ -40,6 +42,36 @@ namespace CitPark
 
                     foreach (ParkingSpotPreview parkingSpotPreview in ParksList)
                     {
+                        parkingSpotPreview.Distance = Location.CalculateDistance(locationToLoad, new Location(parkingSpotPreview.Coordinates[0], parkingSpotPreview.Coordinates[1]), DistanceUnits.Kilometers);
+                    }
+
+                    // Order parks by distance.
+                    ParksList = new ObservableCollection<ParkingSpotPreview>(ParksList.OrderBy(park => park.Distance).ToList());
+
+                    parksListView.ItemsSource = ParksList;
+                }
+
+                foreach (ParkingSpotPreview parkingSpotPreview in ParksList)
+                {
+                    var parkingSpot = Barrel.Current.Get<ParkingSpotPreview>("ParkingSpotPreview_" + parkingSpotPreview.Id);
+
+                    if (parkingSpot != null)
+                    {
+                        parkingSpotPreview.Details = new ParkingSpotDetails();
+
+                        ParkTypesEnum parkTypesEnum = ParkTypesEnum.None;
+
+                        foreach (KeyValuePair<ParkTypesEnum, int> parkSpot in parkingSpot.Details.ParkSpots)
+                        {
+                            parkTypesEnum |= parkSpot.Key;
+                            parkingSpotPreview.Details.ParkSpots.Add(parkSpot.Key, parkSpot.Value);
+                        }
+
+                        parkingSpotPreview.ParkTypes = (int)parkTypesEnum;
+                        parkingSpotPreview.Details.Image = parkingSpot.Details.Image;
+                    }
+                    else
+                    {
                         parkingSpotPreview.Details = new ParkingSpotDetails();
 
                         ParkSpot[] parkSpots = await GetParkingSpot(parkingSpotPreview.Id);
@@ -55,13 +87,11 @@ namespace CitPark
                         parkingSpotPreview.ParkTypes = (int)parkTypesEnum;
                         parkingSpotPreview.Details.Image = await GetParkingSpotImage(parkingSpotPreview.Id);
 
-                        parkingSpotPreview.Distance = Location.CalculateDistance(locationToLoad, new Location(parkingSpotPreview.Coordinates[0], parkingSpotPreview.Coordinates[1]), DistanceUnits.Kilometers);
+                        parksListView.ItemsSource = null;
+                        parksListView.ItemsSource = ParksList;
+
+                        Barrel.Current.Add("ParkingSpotPreview_" + parkingSpotPreview.Id, parkingSpotPreview, TimeSpan.FromDays(7));
                     }
-
-                    // Order parks by distance.
-                    ParksList = new ObservableCollection<ParkingSpotPreview>(ParksList.OrderBy(park => park.Distance).ToList());
-
-                    parksListView.ItemsSource = ParksList;
                 }
             }
         }

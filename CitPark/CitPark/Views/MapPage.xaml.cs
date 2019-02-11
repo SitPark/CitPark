@@ -6,10 +6,12 @@ using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using Plugin.Permissions;
 using Plugin.Permissions.Abstractions;
+using Plugin.Toast;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Net;
@@ -254,8 +256,6 @@ namespace CitPark
 
                 MoveMap(new Location(place.Latitude, place.Longitude));
 
-                await RefreshMap(new Location(place.Latitude, place.Longitude));
-
                 await Navigation.PushModalAsync(new ParksListModal(new Location(place.Latitude, place.Longitude)));
             }
         }
@@ -270,7 +270,13 @@ namespace CitPark
             string ParkName = e.Pin.Label;
 
             // Find the park with the provided name.
-            ParkingSpotPreview parkingSpotPreview = StoredData.ParkingSpotPreviews.First(park => park.Name == ParkName);
+            ParkingSpotPreview parkingSpotPreview = StoredData.ParkingSpotPreviews.FirstOrDefault(park => park.Name == ParkName);
+
+            if(parkingSpotPreview == null)
+            {
+                CrossToastPopUp.Current.ShowToastError("Parking spot could not be found! Try again later");
+                return;
+            }
 
             // Get park details.
             parkingSpotPreview.Details = new ParkingSpotDetails();
@@ -283,8 +289,6 @@ namespace CitPark
             Location location = await GetLastKnownDeviceLocation();
 
             MoveMap(location);
-
-            await RefreshMap(location);
 
             await Navigation.PushModalAsync(new ParksListModal(location));
         }

@@ -2,6 +2,7 @@
 using Xamarin.Essentials;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
+using MonkeyCache.FileStore;
 
 [assembly: XamlCompilation(XamlCompilationOptions.Compile)]
 namespace CitPark
@@ -12,6 +13,8 @@ namespace CitPark
 
         public App()
         {
+            Barrel.ApplicationId = "CitPark";
+
             var menuPage = new MenuPage();
 
             NavigationPage = new NavigationPage(new MapPage());
